@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
-
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
@@ -38,6 +38,11 @@ class NameForm extends React.Component {
           <input type="text" value={this.state.y} onChange={this.handleChangey} />
         </label>
         <input type='text' value={parseInt(this.state.x) + parseInt(this.state.y)} readonly/>
+        <OutboundLink
+     href="https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/"
+   >
+     Visit the Google Analytics plugin page!
+   </OutboundLink>
       </div>
     );
   }
