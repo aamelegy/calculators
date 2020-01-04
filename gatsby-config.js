@@ -32,6 +32,9 @@ module.exports = {
       options: {
         // replace "UA-XXXXXXXXX-X" with your own Tracking ID
         trackingId: "UA-155271009-1",
+        optimizeId: "GTM-NH2P26G",
+        // Enables Google Optimize Experiment ID
+        experimentId: "ngy4tpY5QJutDRtAnPWYGA",
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
