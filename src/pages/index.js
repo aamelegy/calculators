@@ -1,5 +1,4 @@
 import React from "react"
-import SEO from "../components/seo"
 import VolumeCalculators from "../components/volume_calculators"
 import "bootstrap/dist/css/bootstrap.min.css"
 import Flexbox from "flexbox-react"

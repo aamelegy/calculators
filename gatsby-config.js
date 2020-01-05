@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Volume Calculator`,
+    description: `A fast free calculator for volumes of any shape`,
+    author: `@aamelegy`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -30,10 +30,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        // replace "UA-XXXXXXXXX-X" with your own Tracking ID
         trackingId: "UA-155271009-1",
         optimizeId: "GTM-NH2P26G",
-        // Enables Google Optimize Experiment ID
         experimentId: "ngy4tpY5QJutDRtAnPWYGA",
       },
     },

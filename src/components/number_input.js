@@ -1,44 +1,43 @@
 import React from "react"
-
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import units from "../components/units"
 import UnitSelector from "../components/unit_selector"
-import InputGroup from 'react-bootstrap/InputGroup'
-import Flexbox from 'flexbox-react';
+import Flexbox from "flexbox-react"
 
 class NumberInput extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.handleChange = this.handleChange.bind(this);
-    this.state = {error: false};
+    this.handleChange = this.handleChange.bind(this)
+    this.state = { error: false }
   }
 
   handleChange(event) {
-    this.setState({error: isNaN(event.target.value)});
-    this.props.onChange(event);
+    this.setState({ error: isNaN(event.target.value) })
+    this.props.onChange(event)
   }
 
   render() {
     var unitLabel = this.props.unitLabel
     return (
       <Flexbox flexGrow={1}>
-        <Flexbox  flex = {2} flexDirection="column">
-            <Flexbox flex={1} >
-              {this.props.label}
-            </Flexbox>
-              <Flexbox flex={2} >
-              <input type="number" value={this.props.value}  onChange ={this.handleChange}/>
-            </Flexbox>
+        <Flexbox flex={2} flexDirection="column">
+          <Flexbox flex={1}>{this.props.label}</Flexbox>
+          <Flexbox flex={2}>
+            <input
+              type="number"
+              value={this.props.value}
+              onChange={this.handleChange}
+            />
           </Flexbox>
-            <Flexbox flexDirection="row" flex={1} alignItems="flex-end">
-              <UnitSelector onUnitSelect = {this.props.onUnitSelect} unitLabel={unitLabel} units = {this.props.units}/>
-            </Flexbox>
-          {this.state.error == true ?<div style ={{color:"red"}}>{this.props.label} should be a positve number</div>: null }
+        </Flexbox>
+        <Flexbox flexDirection="row" flex={1} alignItems="flex-end">
+          <UnitSelector
+            onUnitSelect={this.props.onUnitSelect}
+            unitLabel={unitLabel}
+            units={this.props.units}
+          />
+        </Flexbox>
       </Flexbox>
-    );
+    )
   }
 }
 
