@@ -79,8 +79,14 @@ allUnits: units[eventKey].label});
   }
   render() {
     return (
-
-        <Flexbox flexGrow={1} flexDirection="column" style={{backgroundColor:"lightgrey", padding: 3, borderWidth:1, borderStyle:"solid"}} maxWidth="900px" maxHeight="500px">
+        <Card bg="light">
+          <Card.Header as="h5">Cuboid Calculator</Card.Header>
+          <Card.Body>
+            <Card.Text>
+        Some quick example text to build on the card title and make up the bulk
+        of the card's content.
+      </Card.Text>
+        <Flexbox flexGrow={1} flexDirection="column" style={{ padding: 3}} maxWidth="500px" maxHeight="500px">
             <Flexbox>
             <Flexbox flex={2}>
               All units:
@@ -91,13 +97,13 @@ allUnits: units[eventKey].label});
         </Flexbox>
 
           <Flexbox>
-            <NumberInput value = {this.state.x.value} label="Length" onChange={this.handleChangex} unitLabel={this.state.x.label()} onUnitSelect = {this.onUnitSelectX} units={[0,1,2]}/>
+            <NumberInput value = {this.state.x.value} label="Length (l)" onChange={this.handleChangex} unitLabel={this.state.x.label()} onUnitSelect = {this.onUnitSelectX} units={[0,1,2]}/>
         </Flexbox>
         <Flexbox>
-          <NumberInput value = {this.state.y.value} label="Width" onChange={this.handleChangey} unitLabel={this.state.y.label()} onUnitSelect = {this.onUnitSelectY} units={[0,1,2]}/>
+          <NumberInput value = {this.state.y.value} label="Width (w)" onChange={this.handleChangey} unitLabel={this.state.y.label()} onUnitSelect = {this.onUnitSelectY} units={[0,1,2]}/>
       </Flexbox>
       <Flexbox>
-        <NumberInput value = {this.state.z.value} label="Height" onChange={this.handleChangez} unitLabel={this.state.z.label()} onUnitSelect = {this.onUnitSelectZ} units={[0,1,2]} />
+        <NumberInput value = {this.state.z.value} label="Height (h)" onChange={this.handleChangez} unitLabel={this.state.z.label()} onUnitSelect = {this.onUnitSelectZ} units={[0,1,2]} />
       </Flexbox>
 <Flexbox>
           <Flexbox>
@@ -111,6 +117,8 @@ allUnits: units[eventKey].label});
       <img src={cuboid} width="200" height="100" />
       </Flexbox>
       </Flexbox>
+    </Card.Body>
+    </Card>
 
 
     );
