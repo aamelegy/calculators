@@ -81,12 +81,10 @@ allUnits: units[eventKey].label});
       <Flexbox flexGrow={1}   flexDirection="row" style={{backgroundColor:"lightgrey"}}>
         <Flexbox  flexGrow={1} flexDirection="column">
             <Flexbox>
-            <Flexbox flex={1}>
+            <Flexbox flex={2}>
               All units:
             </Flexbox>
-            <Flexbox flex={2}>
-            </Flexbox>
-            <Flexbox flex={2}>
+            <Flexbox flex={1}>
               <UnitSelector onUnitSelect = {this.onAllUnitsChange} unitLabel={this.state.allUnits} units={[0,1,2]}/>
             </Flexbox>
         </Flexbox>
