@@ -3,22 +3,19 @@ import NumberInput from "../components/number_input"
 import Card from "react-bootstrap/Card"
 import units from "../components/units"
 import UnitSelector from "../components/unit_selector"
+import CalculationResults from "../components/calculation_results"
 import Flexbox from "flexbox-react"
 import cuboid from "../images/prism.png"
-import InputGroup from "react-bootstrap/InputGroup"
-import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
-import OverlayTrigger from "react-bootstrap/OverlayTrigger"
-import Tooltip from "react-bootstrap/Tooltip"
 
 class RectangularVolumeCalculator extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      x: new units[0].type(""),
-      y: new units[0].type(""),
-      z: new units[0].type(""),
-      allUnits: units[0].label,
+      x: new units.Meters.type(""),
+      y: new units.Meters.type(""),
+      z: new units.Meters.type(""),
+      allUnits: units.Meters.label,
     }
     this.handleChangex = this.handleChangex.bind(this)
     this.onUnitSelectX = this.onUnitSelectX.bind(this)
@@ -81,7 +78,7 @@ class RectangularVolumeCalculator extends React.Component {
       allSelectedUnits.add(y.constructor)
       allSelectedUnits.add(z.constructor)
       if (allSelectedUnits.size > 1) {
-        var resultInMetersCube = new units[3].type(
+        var resultInMetersCube = new units.MetersCube.type(
           parseFloat(x.toMeter()) *
             parseFloat(y.toMeter()) *
             parseFloat(z.toMeter())
@@ -101,6 +98,15 @@ class RectangularVolumeCalculator extends React.Component {
 
   render() {
     var resultBoxes = {}
+    var unitsUsed = [
+      "Meters",
+      "Kilometers",
+      "Centimeters",
+      "Inches",
+      "Feet",
+      "Yards",
+      "Miles",
+    ]
     return (
       <Card bg="light">
         <Card.Header as="h5">Cuboid Calculator</Card.Header>
@@ -121,7 +127,7 @@ class RectangularVolumeCalculator extends React.Component {
                 <UnitSelector
                   onUnitSelect={this.onAllUnitsChange}
                   unitLabel={this.state.allUnits}
-                  units={[0, 1, 2, 4, 5, 6, 7]}
+                  units={unitsUsed}
                 />
               </Flexbox>
             </Flexbox>
@@ -133,7 +139,7 @@ class RectangularVolumeCalculator extends React.Component {
                 onChange={this.handleChangex}
                 unitLabel={this.state.x.label()}
                 onUnitSelect={this.onUnitSelectX}
-                units={[0, 1, 2, 4, 5, 6, 7]}
+                units={unitsUsed}
               />
             </Flexbox>
             <Flexbox>
@@ -143,7 +149,7 @@ class RectangularVolumeCalculator extends React.Component {
                 onChange={this.handleChangey}
                 unitLabel={this.state.y.label()}
                 onUnitSelect={this.onUnitSelectY}
-                units={[0, 1, 2, 4, 5, 6, 7]}
+                units={unitsUsed}
               />
             </Flexbox>
             <Flexbox>
@@ -153,7 +159,7 @@ class RectangularVolumeCalculator extends React.Component {
                 onChange={this.handleChangez}
                 unitLabel={this.state.z.label()}
                 onUnitSelect={this.onUnitSelectZ}
-                units={[0, 1, 2, 4, 5, 6, 7]}
+                units={unitsUsed}
               />
             </Flexbox>
             <Flexbox marginTop={"10px"} justifyContent="center">
@@ -170,48 +176,7 @@ class RectangularVolumeCalculator extends React.Component {
                   {" "}
                   {this.getVolume(this.state.x, this.state.y, this.state.z).map(
                     result => {
-                      return (
-                        <Flexbox>
-                          <Flexbox flex={7}>
-                            <InputGroup className="mb-3">
-                              <Form.Control
-                                readOnly
-                                defaultValue={result[0]}
-                                ref={textarea =>
-                                  (resultBoxes[result[0]] = textarea)
-                                }
-                              />
-                              <InputGroup.Append>
-                                <OverlayTrigger
-                                  placement="right"
-                                  show={false}
-                                  delay={{ show: 250, hide: 400 }}
-                                  overlay={<Tooltip>Copy to clipboard</Tooltip>}
-                                >
-                                  <Button
-                                    variant="outline-secondary"
-                                    onClick={() => {
-                                      const el = resultBoxes[result[0]]
-                                      el.select()
-                                      document.execCommand("copy")
-                                    }}
-                                  >
-                                    Copy
-                                  </Button>
-                                </OverlayTrigger>
-                              </InputGroup.Append>
-                            </InputGroup>
-                          </Flexbox>
-                          <Flexbox
-                            flex={1}
-                            marginLeft="8px"
-                            justifyContent="center"
-                            alginItems="center"
-                          >
-                            {result[1] ? result[1] : "Units"}
-                          </Flexbox>
-                        </Flexbox>
-                      )
+                      return <CalculationResults result={result} />
                     }
                   )}
                 </div>
@@ -221,10 +186,10 @@ class RectangularVolumeCalculator extends React.Component {
               variant="outline-secondary"
               onClick={() => {
                 this.setState({
-                  x: new units[0].type(""),
-                  y: new units[0].type(""),
-                  z: new units[0].type(""),
-                  allUnits: units[0].label,
+                  x: new units.Meters.type(""),
+                  y: new units.Meters.type(""),
+                  z: new units.Meters.type(""),
+                  allUnits: units.Meters.label,
                 })
               }}
             >
