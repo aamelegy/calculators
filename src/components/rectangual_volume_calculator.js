@@ -9,6 +9,7 @@ import Card from 'react-bootstrap/Card'
 import units from "../components/units"
 import UnitSelector from "../components/unit_selector"
 import Flexbox from 'flexbox-react';
+import cuboid from "../images/prism.png";
 
 class RectangularVolumeCalculator extends React.Component {
   constructor(props) {
@@ -78,8 +79,8 @@ allUnits: units[eventKey].label});
   }
   render() {
     return (
-      <Flexbox flexGrow={1}  flexDirection="row" style={{backgroundColor:"lightgrey", padding: 3, borderWidth:1, borderStyle:"solid"}} maxWidth="900px" maxHeight="350px">
-        <Flexbox flexGrow={1} flexDirection="column">
+
+        <Flexbox flexGrow={1} flexDirection="column" style={{backgroundColor:"lightgrey", padding: 3, borderWidth:1, borderStyle:"solid"}} maxWidth="900px" maxHeight="500px">
             <Flexbox>
             <Flexbox flex={2}>
               All units:
@@ -106,12 +107,12 @@ allUnits: units[eventKey].label});
             <div style = {{color:"green"}}> {this.getVolume(this.state.x, this.state.y, this.state.z).map((result)=> {return <div>{result}</div>})}</div>
          </Flexbox>
 </Flexbox>
+<Flexbox justifyContent="center">
+      <img src={cuboid} width="200" height="100" />
       </Flexbox>
-      <Flexbox>
-        <CuboidImage/>
       </Flexbox>
 
-      </Flexbox>
+
     );
   }
 }

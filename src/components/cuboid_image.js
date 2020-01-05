@@ -18,7 +18,7 @@ const CuboidImage = () => {
     query {
       placeholderImage: file(relativePath: { eq: "prism.png" }) {
         childImageSharp {
-          fluid(maxWidth: 50) {
+          fluid(maxWidth: 100) {
             ...GatsbyImageSharpFluid
           }
         }
