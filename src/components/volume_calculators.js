@@ -1,5 +1,7 @@
 import React from "react"
 import RectangularVolumeCalculator from "../components/rectangual_volume_calculator"
+import Flexbox from 'flexbox-react';
+
 class VolumeCalculators extends React.Component {
   constructor(props) {
     super(props);
@@ -7,9 +9,9 @@ class VolumeCalculators extends React.Component {
 
   render() {
     return (
-      <div>
+      <Flexbox>
         <RectangularVolumeCalculator/>
-      </div>
+      </Flexbox>
     );
   }
 }

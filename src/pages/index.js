@@ -15,7 +15,7 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        <div style = {{fontSize:"300%", color:"darkblue", justifyContent:"center", display:"flex"}}>Volume Calculator</div>
+        <div style = {{fontSize:"200%", color:"darkblue", justifyContent:"center", display:"flex"}}>Volume Calculator</div>
         <VolumeCalculators/>
       </div>
     );

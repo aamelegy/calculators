@@ -8,6 +8,7 @@ import NumberInput from "../components/number_input"
 import Card from 'react-bootstrap/Card'
 import units from "../components/units"
 import UnitSelector from "../components/unit_selector"
+import Flexbox from 'flexbox-react';
 
 class RectangularVolumeCalculator extends React.Component {
   constructor(props) {
@@ -77,49 +78,46 @@ allUnits: units[eventKey].label});
   }
   render() {
     return (
+      <Flexbox flexGrow={1}   flexDirection="row" style={{backgroundColor:"lightgrey"}}>
+        <Flexbox  flexGrow={1} flexDirection="column">
+            <Flexbox>
+            <Flexbox flex={1}>
+              All units:
+            </Flexbox>
+            <Flexbox flex={2}>
+            </Flexbox>
+            <Flexbox flex={2}>
+              <UnitSelector onUnitSelect = {this.onAllUnitsChange} unitLabel={this.state.allUnits} units={[0,1,2]}/>
+            </Flexbox>
+        </Flexbox>
 
-      <div>
-      <Container>
-      <Row>
-      <Col xs = {10}>
-        <Row>
-          <Container>
-            <Row>
-          <Col xs={8}>
-            Change all units to:
-          </Col>
+          <Flexbox>
+            <NumberInput value = {this.state.x.value} label="Length" onChange={this.handleChangex} unitLabel={this.state.x.label()} onUnitSelect = {this.onUnitSelectX} units={[0,1,2]}/>
+        </Flexbox>
+        <Flexbox>
+          <NumberInput value = {this.state.y.value} label="Width" onChange={this.handleChangey} unitLabel={this.state.y.label()} onUnitSelect = {this.onUnitSelectY} units={[0,1,2]}/>
+      </Flexbox>
+      <Flexbox>
+        <NumberInput value = {this.state.z.value} label="Height" onChange={this.handleChangez} unitLabel={this.state.z.label()} onUnitSelect = {this.onUnitSelectZ} units={[0,1,2]} />
+      </Flexbox>
+<Flexbox>
+          <Flexbox>
+          Volume equals =
+        </Flexbox>
+          <Flexbox>
+            <div style = {{color:"green"}}> {this.getVolume(this.state.x, this.state.y, this.state.z).map((result)=> {return <div>{result}</div>})}</div>
+         </Flexbox>
+</Flexbox>
+      </Flexbox>
+      <Flexbox>
+        <CuboidImage/>
+      </Flexbox>
 
-          <Col >
-            <UnitSelector onUnitSelect = {this.onAllUnitsChange} unitLabel={this.state.allUnits} units={[0,1,2]}/>
-          </Col>
-        </Row>
-        </Container>
-        </Row>
-        <Row>
-          <NumberInput value = {this.state.x.value} label="Length" onChange={this.handleChangex} unitLabel={this.state.x.label()} onUnitSelect = {this.onUnitSelectX} units={[0,1,2]}/>
-      </Row>
-      <Row>
-        <NumberInput value = {this.state.y.value} label="Width" onChange={this.handleChangey} unitLabel={this.state.y.label()} onUnitSelect = {this.onUnitSelectY} units={[0,1,2]}/>
-    </Row>
-    <Row>
-      <NumberInput value = {this.state.z.value} label="Height" onChange={this.handleChangez} unitLabel={this.state.z.label()} onUnitSelect = {this.onUnitSelectZ} units={[0,1,2]} />
-  </Row>
-      <Row>
-        <Col xs={4}>
-        Volume equals =
-      </Col>
-        <Col xs={8} >
-          <div style = {{color:"green"}}> {this.getVolume(this.state.x, this.state.y, this.state.z).map((result)=> {return <div>{result}</div>})}</div>
-       </Col>
-      </Row>
-    </Col>
-    <Col xs={2}>
-      <CuboidImage/>
-    </Col>
-  </Row>
-    </Container>
+      </Flexbox>
 
-  </div>
+
+
+
     );
   }
 }
