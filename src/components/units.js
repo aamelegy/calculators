@@ -79,15 +79,15 @@ class MetersCube{
     if (type === Centimeter) {
       var value = this.value * 1000000;
       value = +value.toFixed(10);
-      return value +" Cubic centimeter";
+      return [value, " cm³"];
     }
     else if (type === Meter) {
-      return (this.value) +  " Cubic meter";
+      return [(this.value), " m³"];
     }
     else if (type === Kilometer) {
       var value = this.value / 1000000000;
       value = +value.toFixed(10);
-      return value + " Cubic kilometer";
+      return [value, " km³"];
     }
   }
 }

@@ -1,8 +1,6 @@
 import React from "react"
 import Dropdown from 'react-bootstrap/Dropdown'
 import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import CuboidImage from "../components/cuboid_image"
 import NumberInput from "../components/number_input"
 import Card from 'react-bootstrap/Card'
@@ -10,6 +8,15 @@ import units from "../components/units"
 import UnitSelector from "../components/unit_selector"
 import Flexbox from 'flexbox-react';
 import cuboid from "../images/prism.png";
+import "../components/layout.css";
+import { Glyphicon } from 'react-bootstrap';
+import InputGroup from 'react-bootstrap/InputGroup'
+import FormControl from 'react-bootstrap/FormControl'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Toast from 'react-bootstrap/Toast'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Tooltip from 'react-bootstrap/Tooltip'
 
 class RectangularVolumeCalculator extends React.Component {
   constructor(props) {
@@ -77,6 +84,8 @@ allUnits: units[eventKey].label});
       return result;
     }
   }
+
+
   render() {
     return (
         <Card bg="light">
@@ -86,7 +95,7 @@ allUnits: units[eventKey].label});
         Some quick example text to build on the card title and make up the bulk
         of the card's content.
       </Card.Text>
-        <Flexbox flexGrow={1} flexDirection="column" style={{ padding: 3}} maxWidth="500px" maxHeight="500px">
+        <Flexbox flexGrow={1} flexDirection="column" style={{ padding: 3}} maxWidth="500px" maxHeight="600px">
             <Flexbox>
             <Flexbox flex={2}>
               All units:
@@ -105,17 +114,43 @@ allUnits: units[eventKey].label});
       <Flexbox>
         <NumberInput value = {this.state.z.value} label="Height (h)" onChange={this.handleChangez} unitLabel={this.state.z.label()} onUnitSelect = {this.onUnitSelectZ} units={[0,1,2]} />
       </Flexbox>
-<Flexbox>
-          <Flexbox>
-          Volume equals
-        </Flexbox>
-          <Flexbox>
-            <div style = {{color:"green"}}> {this.getVolume(this.state.x, this.state.y, this.state.z).map((result)=> {return <div>{result}</div>})}</div>
+      <Flexbox marginTop={"10px"} justifyContent="center">
+            <img src={cuboid} width="200" height="100" />
+            </Flexbox>
+            <Flexbox>
+            Volume equals:
+          </Flexbox>
+            <Flexbox>
+
+          <Flexbox alignItems="center" justifyContent="center" marginLeft="3px">
+            <div style = {{color:"green"}}> {this.getVolume(this.state.x, this.state.y, this.state.z).map((result)=> {
+              return <Flexbox>
+                <Flexbox flex={7}>
+                <InputGroup className="mb-3">
+  <Form.Control  readOnly defaultValue={result[0]}  ref={(textarea) => this.textArea = textarea}/>
+  <InputGroup.Append>
+    <OverlayTrigger
+    placement="right"
+    show={false}
+    delay={{ show: 250, hide: 400 }}
+    overlay={<Tooltip>Copy to clipboard</Tooltip>}
+  >
+    <Button variant="outline-secondary" onClick={() => {
+      const el = this.textArea
+      el.select()
+      document.execCommand("copy")
+    }}>Copy</Button>
+  </OverlayTrigger>
+
+
+  </InputGroup.Append>
+</InputGroup>
+</Flexbox>
+                <Flexbox flex={1} marginLeft="8px">{result[1]? result[1]: "Units"}</Flexbox>
+              </Flexbox>})}</div>
          </Flexbox>
 </Flexbox>
-<Flexbox justifyContent="center">
-      <img src={cuboid} width="200" height="100" />
-      </Flexbox>
+
       </Flexbox>
     </Card.Body>
     </Card>
