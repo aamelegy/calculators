@@ -8,6 +8,7 @@ class UnitSelector extends React.Component {
   }
   render() {
     var unitLabel = this.props.unitLabel;
+    var inputUnits =  this.props.units;
     return (
       <div>
         <Dropdown onSelect = {this.props.onUnitSelect} >
@@ -15,7 +16,7 @@ class UnitSelector extends React.Component {
             {this.props.unitLabel}
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            {Object.keys(this.props.units).map(function(key){ return <Dropdown.Item active = {units[key].label === unitLabel} eventKey = {key}>{units[key].label}</Dropdown.Item>})}
+            {Object.values(inputUnits).map(function(key){ return <Dropdown.Item active = {units[key].label === unitLabel} eventKey = {key}>{units[key].label}</Dropdown.Item>})}
           </Dropdown.Menu>
         </Dropdown>
       </div>

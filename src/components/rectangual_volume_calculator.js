@@ -76,24 +76,31 @@ allUnits: units[eventKey].label});
       allSelectedUnits.add(x.constructor);
       allSelectedUnits.add(y.constructor);
       allSelectedUnits.add(z.constructor);
-      var resultInMetersCube = new units[3].type(parseFloat(x.toMeter()) * parseFloat(y.toMeter()) * parseFloat(z.toMeter()));
-      var result = [];
-      allSelectedUnits.forEach((unit) => {
-        result.push(resultInMetersCube.toFormatted(unit))
-      });
-      return result;
+      if (allSelectedUnits.size > 1){
+        var resultInMetersCube = new units[3].type(parseFloat(x.toMeter()) * parseFloat(y.toMeter()) * parseFloat(z.toMeter()));
+        var result = [];
+        allSelectedUnits.forEach((unit) => {
+          result.push(resultInMetersCube.toFormatted(unit))
+        });
+        return result;
+      }
+      else{
+        var volume = parseFloat(x.value) * parseFloat(y.value) * parseFloat(z.value);
+        return [[volume,x.cubeUnit]];
+      }
     }
+
   }
 
 
   render() {
+    var resultBoxes = {};
     return (
         <Card bg="light">
           <Card.Header as="h5">Cuboid Calculator</Card.Header>
           <Card.Body>
             <Card.Text>
-        Some quick example text to build on the card title and make up the bulk
-        of the card's content.
+        A generalized form of a cube. volume = length × width × height
       </Card.Text>
         <Flexbox flexGrow={1} flexDirection="column" style={{ padding: 3}} maxWidth="500px" maxHeight="600px">
             <Flexbox>
@@ -101,18 +108,18 @@ allUnits: units[eventKey].label});
               All units:
             </Flexbox>
             <Flexbox flex={1}>
-              <UnitSelector onUnitSelect = {this.onAllUnitsChange} unitLabel={this.state.allUnits} units={[0,1,2]}/>
+              <UnitSelector onUnitSelect = {this.onAllUnitsChange} unitLabel={this.state.allUnits} units={[0,1,2,4,5,6,7]}/>
             </Flexbox>
         </Flexbox>
 
           <Flexbox>
-            <NumberInput value = {this.state.x.value} label="Length (l)" onChange={this.handleChangex} unitLabel={this.state.x.label()} onUnitSelect = {this.onUnitSelectX} units={[0,1,2]}/>
+            <NumberInput value = {this.state.x.value} label="Length (l)" onChange={this.handleChangex} unitLabel={this.state.x.label()} onUnitSelect = {this.onUnitSelectX} units={[0,1,2,4,5,6,7]}/>
         </Flexbox>
         <Flexbox>
-          <NumberInput value = {this.state.y.value} label="Width (w)" onChange={this.handleChangey} unitLabel={this.state.y.label()} onUnitSelect = {this.onUnitSelectY} units={[0,1,2]}/>
+          <NumberInput value = {this.state.y.value} label="Width (w)" onChange={this.handleChangey} unitLabel={this.state.y.label()} onUnitSelect = {this.onUnitSelectY} units={[0,1,2,4,5,6,7]}/>
       </Flexbox>
       <Flexbox>
-        <NumberInput value = {this.state.z.value} label="Height (h)" onChange={this.handleChangez} unitLabel={this.state.z.label()} onUnitSelect = {this.onUnitSelectZ} units={[0,1,2]} />
+        <NumberInput value = {this.state.z.value} label="Height (h)" onChange={this.handleChangez} unitLabel={this.state.z.label()} onUnitSelect = {this.onUnitSelectZ} units={[0,1,2,4,5,6,7]} />
       </Flexbox>
       <Flexbox marginTop={"10px"} justifyContent="center">
             <img src={cuboid} width="200" height="100" />
@@ -127,7 +134,7 @@ allUnits: units[eventKey].label});
               return <Flexbox>
                 <Flexbox flex={7}>
                 <InputGroup className="mb-3">
-  <Form.Control  readOnly defaultValue={result[0]}  ref={(textarea) => this.textArea = textarea}/>
+  <Form.Control  readOnly defaultValue={result[0]}  ref={(textarea) => resultBoxes[result[0]] = textarea}/>
   <InputGroup.Append>
     <OverlayTrigger
     placement="right"
@@ -136,7 +143,7 @@ allUnits: units[eventKey].label});
     overlay={<Tooltip>Copy to clipboard</Tooltip>}
   >
     <Button variant="outline-secondary" onClick={() => {
-      const el = this.textArea
+      const el = resultBoxes[result[0]]
       el.select()
       document.execCommand("copy")
     }}>Copy</Button>
@@ -146,11 +153,12 @@ allUnits: units[eventKey].label});
   </InputGroup.Append>
 </InputGroup>
 </Flexbox>
-                <Flexbox flex={1} marginLeft="8px">{result[1]? result[1]: "Units"}</Flexbox>
+                <Flexbox flex={1} marginLeft="8px"  justifyContent = "center" alginItems="center" >{result[1]? result[1]: "Units"}</Flexbox>
               </Flexbox>})}</div>
          </Flexbox>
 </Flexbox>
-
+<Button variant="outline-secondary" onClick={() => {this.setState({x: new units[0].type("") ,y:new units[0].type(""), z:new units[0].type(""), allUnits : units[0].label})
+}}>Clear all</Button>
       </Flexbox>
     </Card.Body>
     </Card>

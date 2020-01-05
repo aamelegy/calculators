@@ -13,30 +13,7 @@ class VolumeCalculators extends React.Component {
         <Flexbox flex={1} justifyContent="center" margin="3px">
           <RectangularVolumeCalculator/>
         </Flexbox>
-        <Flexbox flex={1} justifyContent="center" margin="3px" >
-          <RectangularVolumeCalculator/>
-        </Flexbox>
-        <Flexbox flex={1} justifyContent="center"  margin="3px">
-          <RectangularVolumeCalculator/>
-        </Flexbox>
-        <Flexbox flex={1} justifyContent="center"  margin="3px">
-          <RectangularVolumeCalculator/>
-        </Flexbox>
-        <Flexbox flex={1} justifyContent="center"  margin="3px">
-          <RectangularVolumeCalculator/>
-        </Flexbox>
-        <Flexbox flex={1} justifyContent="center"  margin="3px">
-          <RectangularVolumeCalculator/>
-        </Flexbox>
-        <Flexbox flex={1} justifyContent="center"  margin="3px">
-          <RectangularVolumeCalculator/>
-        </Flexbox>
-        <Flexbox flex={1} justifyContent="center"  margin="3px">
-          <RectangularVolumeCalculator/>
-        </Flexbox>
-        <Flexbox flex={1} justifyContent="center"  margin="3px">
-          <RectangularVolumeCalculator/>
-        </Flexbox>
+
       </Flexbox>
     );
   }
