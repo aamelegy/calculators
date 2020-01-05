@@ -79,20 +79,21 @@ allUnits: units[eventKey].label});
     return (
 
       <div>
-        <Card>
-    <Card.Body>
       <Container>
       <Row>
-        <Col xs = {1}>
-        </Col>
-      <Col xs = {8}>
+      <Col xs = {10}>
         <Row>
+          <Container>
+            <Row>
           <Col xs={8}>
             Change all units to:
           </Col>
-          <Col xs={4}>
+
+          <Col >
             <UnitSelector onUnitSelect = {this.onAllUnitsChange} unitLabel={this.state.allUnits} units={[0,1,2]}/>
           </Col>
+        </Row>
+        </Container>
         </Row>
         <Row>
           <NumberInput value = {this.state.x.value} label="Length" onChange={this.handleChangex} unitLabel={this.state.x.label()} onUnitSelect = {this.onUnitSelectX} units={[0,1,2]}/>
@@ -115,12 +116,8 @@ allUnits: units[eventKey].label});
     <Col xs={2}>
       <CuboidImage/>
     </Col>
-    <Col xs = {1}>
-    </Col>
   </Row>
     </Container>
-    </Card.Body>
-  </Card>
 
   </div>
     );

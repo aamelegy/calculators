@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col'
 import units from "../components/units"
 import UnitSelector from "../components/unit_selector"
 import InputGroup from 'react-bootstrap/InputGroup'
+import Flexbox from 'flexbox-react';
 
 class NumberInput extends React.Component {
   constructor(props) {
@@ -23,21 +24,18 @@ class NumberInput extends React.Component {
   render() {
     var unitLabel = this.props.unitLabel
     return (
-        <Container>
+      <Container>
           <Row>
-            <Col xs={4}>
+            <Col>
               {this.props.label}
-              </Col>
-              <Col xs={4}>
+            </Col>
+              <Col>
               <input type="text" value={this.props.value}  onChange ={this.handleChange}/>
             </Col>
-            <Col xs={4}>
+            <Col>
               <UnitSelector onUnitSelect = {this.props.onUnitSelect} unitLabel={unitLabel} units = {this.props.units}/>
             </Col>
-        </Row>
-        <Row>
           {this.state.error == true ?<div style ={{color:"red"}}>{this.props.label} should be a positve number</div>: null }
-
         </Row>
       </Container>
     );

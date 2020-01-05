@@ -10,8 +10,8 @@ class UnitSelector extends React.Component {
     var unitLabel = this.props.unitLabel;
     return (
       <div>
-        <Dropdown onSelect = {this.props.onUnitSelect} size="sm">
-          <Dropdown.Toggle variant="secondary" style={{width:"70%"}}>
+        <Dropdown onSelect = {this.props.onUnitSelect} >
+          <Dropdown.Toggle variant="secondary" size="sm">
             {this.props.unitLabel}
           </Dropdown.Toggle>
           <Dropdown.Menu>
