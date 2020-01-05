@@ -1,5 +1,6 @@
 import React from "react"
 import RectangularVolumeCalculator from "../components/rectangual_volume_calculator"
+import CylinderVolumeCalculator from "../components/cylinder_volume_calculator"
 import Flexbox from "flexbox-react"
 
 class VolumeCalculators extends React.Component {
@@ -17,6 +18,9 @@ class VolumeCalculators extends React.Component {
       >
         <Flexbox flex={1} justifyContent="center" margin="3px">
           <RectangularVolumeCalculator />
+        </Flexbox>
+        <Flexbox flex={1} justifyContent="center" margin="3px">
+          <CylinderVolumeCalculator />
         </Flexbox>
       </Flexbox>
     )
