@@ -78,8 +78,8 @@ allUnits: units[eventKey].label});
   }
   render() {
     return (
-      <Flexbox flexGrow={1}   flexDirection="row" style={{backgroundColor:"lightgrey"}}>
-        <Flexbox  flexGrow={1} flexDirection="column">
+      <Flexbox flexGrow={1}  flexDirection="row" style={{backgroundColor:"lightgrey", padding: 3, borderWidth:1, borderStyle:"solid"}} maxWidth="900px" maxHeight="350px">
+        <Flexbox flexGrow={1} flexDirection="column">
             <Flexbox>
             <Flexbox flex={2}>
               All units:
@@ -100,7 +100,7 @@ allUnits: units[eventKey].label});
       </Flexbox>
 <Flexbox>
           <Flexbox>
-          Volume equals =
+          Volume equals
         </Flexbox>
           <Flexbox>
             <div style = {{color:"green"}}> {this.getVolume(this.state.x, this.state.y, this.state.z).map((result)=> {return <div>{result}</div>})}</div>
@@ -112,10 +112,6 @@ allUnits: units[eventKey].label});
       </Flexbox>
 
       </Flexbox>
-
-
-
-
     );
   }
 }

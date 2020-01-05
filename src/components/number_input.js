@@ -24,16 +24,16 @@ class NumberInput extends React.Component {
   render() {
     var unitLabel = this.props.unitLabel
     return (
-      <Flexbox flexGrow={1} style={{backgroundColor:"red"}}>
-        <Flexbox flex = {2} flexDirection="column">
+      <Flexbox flexGrow={1}>
+        <Flexbox  flex = {2} flexDirection="column">
             <Flexbox flex={1} >
               {this.props.label}
             </Flexbox>
-              <Flexbox flex={2} style={{backgroundColor:"green"}}>
+              <Flexbox flex={2} >
               <input type="number" value={this.props.value}  onChange ={this.handleChange}/>
             </Flexbox>
           </Flexbox>
-            <Flexbox flexDirection="row" flex={1} style={{backgroundColor:"blue"}} alignItems="flex-end">
+            <Flexbox flexDirection="row" flex={1} alignItems="flex-end">
               <UnitSelector onUnitSelect = {this.props.onUnitSelect} unitLabel={unitLabel} units = {this.props.units}/>
             </Flexbox>
           {this.state.error == true ?<div style ={{color:"red"}}>{this.props.label} should be a positve number</div>: null }

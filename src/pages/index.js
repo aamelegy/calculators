@@ -1,11 +1,8 @@
 import React from "react"
-import { Link } from "gatsby"
-
-import Layout from "../components/layout"
-
 import SEO from "../components/seo"
 import VolumeCalculators from "../components/volume_calculators"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Flexbox from 'flexbox-react';
 
 class Main extends React.Component {
   constructor(props) {
@@ -14,10 +11,12 @@ class Main extends React.Component {
 
   render() {
     return (
-      <div>
-        <div style = {{fontSize:"200%", color:"darkblue", justifyContent:"center", display:"flex"}}>Volume Calculator</div>
+      <Flexbox height= "100vh"  flexDirection="column" >
+        <Flexbox  style = {{fontSize:"250%", color:"darkblue", justifyContent:"center", display:"flex"}}>
+          Volume Calculator
+        </Flexbox>
         <VolumeCalculators/>
-      </div>
+      </Flexbox>
     );
   }
 }
