@@ -5,7 +5,6 @@ import units from "../components/units"
 import UnitSelector from "../components/unit_selector"
 import CalculationResults from "../components/calculation_results"
 import Flexbox from "flexbox-react"
-import cylinder from "../images/cylinder.png"
 import Button from "react-bootstrap/Button"
 
 class BaseVolumeCalculator extends React.Component {
@@ -101,15 +100,11 @@ class BaseVolumeCalculator extends React.Component {
             })}
 
             <Flexbox marginTop={"10px"} justifyContent="center">
-              <img src={cylinder} width="200" height="100" />
+              <img src={this.props.shapeImage} width="100" height="100" />
             </Flexbox>
             <Flexbox>Volume equals:</Flexbox>
             <Flexbox>
-              <Flexbox
-                alignItems="center"
-                justifyContent="center"
-                marginLeft="3px"
-              >
+              <Flexbox alignItems="center" justifyContent="center">
                 <div style={{ color: "green" }}>
                   {" "}
                   {this.props.getVolume(this.state).map(result => {

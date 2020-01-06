@@ -14,7 +14,7 @@ class CalculationResults extends React.Component {
     var resultBoxes = {}
     return (
       <Flexbox>
-        <Flexbox flex={7}>
+        <Flexbox flex={7} justifyContent="center" alignItems="center">
           <InputGroup className="mb-3">
             <Form.Control
               readOnly
@@ -42,12 +42,7 @@ class CalculationResults extends React.Component {
             </InputGroup.Append>
           </InputGroup>
         </Flexbox>
-        <Flexbox
-          flex={1}
-          marginLeft="8px"
-          justifyContent="center"
-          alginItems="center"
-        >
+        <Flexbox flex={1} marginLeft="8px" marginTop="6px">
           {this.props.result[1] ? this.props.result[1] : "Units"}
         </Flexbox>
       </Flexbox>

@@ -2,6 +2,7 @@ import React from "react"
 import units from "../components/units"
 import VolumeCalculatorInput from "../model/volume_calculator_input"
 import BaseVolumeCalculator from "../components/base_volume_calculator"
+import cylinder from "../images/cylinder.png"
 
 class CylinderVolumeCalculator extends React.Component {
   constructor(props) {
@@ -52,6 +53,7 @@ class CylinderVolumeCalculator extends React.Component {
         description={
           " A generalized form of a cube. volume = length × width × height"
         }
+        shapeImage={cylinder}
         getVolume={this.getVolume}
       />
     )
