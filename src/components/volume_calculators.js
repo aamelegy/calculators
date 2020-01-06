@@ -8,6 +8,10 @@ class VolumeCalculators extends React.Component {
     super(props)
   }
 
+  getVolume(state) {
+    return [[state.r.value, "as"]]
+  }
+
   render() {
     return (
       <Flexbox

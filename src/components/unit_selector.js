@@ -9,7 +9,6 @@ class UnitSelector extends React.Component {
   render() {
     var unitLabel = this.props.unitLabel
     var inputUnits = this.props.units
-    console.log(inputUnits)
     return (
       <div>
         <Dropdown onSelect={this.props.onUnitSelect}>

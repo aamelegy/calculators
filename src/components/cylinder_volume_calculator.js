@@ -1,143 +1,59 @@
 import React from "react"
-import NumberInput from "../components/number_input"
-import Card from "react-bootstrap/Card"
 import units from "../components/units"
-import UnitSelector from "../components/unit_selector"
-import CalculationResults from "../components/calculation_results"
-import Flexbox from "flexbox-react"
-import cylinder from "../images/cylinder.png"
-import Button from "react-bootstrap/Button"
+import VolumeCalculatorInput from "../model/volume_calculator_input"
+import BaseVolumeCalculator from "../components/base_volume_calculator"
 
 class CylinderVolumeCalculator extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      r: new units.Meters.type(""),
-      h: new units.Meters.type(""),
-      allUnits: units.Meters.label,
-    }
-    this.handleChangeR = this.handleChangeR.bind(this)
-    this.onUnitSelectR = this.onUnitSelectR.bind(this)
-    this.handleChangeH = this.handleChangeH.bind(this)
-    this.onUnitSelectH = this.onUnitSelectH.bind(this)
-    this.onAllUnitsChange = this.onAllUnitsChange.bind(this)
   }
 
-  handleChangeR(event) {
-    var value = event.target.value
-    this.setState({ r: new this.state.r.constructor(value) })
-  }
-  onUnitSelectR(eventKey, event) {
-    var currentValue = this.state.x.value
-    this.setState({ r: new units[eventKey].type(currentValue) })
-  }
-  handleChangeH(event) {
-    var value = event.target.value
-    this.setState({ h: new this.state.h.constructor(value) })
-  }
-  onUnitSelectH(eventKey, event) {
-    var currentValue = this.state.y.value
-    this.setState({ h: new units[eventKey].type(currentValue) })
-  }
-  onAllUnitsChange(eventKey, event) {
-    this.setState({
-      r: new units[eventKey].type(this.state.r.value),
-      h: new units[eventKey].type(this.state.h.value),
-      allUnits: units[eventKey].label,
-    })
-  }
-  getVolume(r, h) {
-    return [["12", "as"]]
+  getVolume(state) {
+    var r = state.r
+    var h = state.h
+    if (r == null || h == null || r.value == "" || h.value == "") {
+      return [""]
+    } else if (isNaN(r.value) || isNaN(h.value)) {
+      return ["Error"]
+    } else {
+      var allSelectedUnits = new Set()
+      allSelectedUnits.add(r.constructor)
+      allSelectedUnits.add(h.constructor)
+      if (allSelectedUnits.size > 1) {
+        var resultInMetersCube = new units.MetersCube.type(
+          Math.PI *
+            parseFloat(r.toMeter()) *
+            parseFloat(r.toMeter()) *
+            parseFloat(h.toMeter())
+        )
+        var result = []
+        allSelectedUnits.forEach(unit => {
+          result.push(resultInMetersCube.toFormatted(unit))
+        })
+        return result
+      } else {
+        var volume =
+          Math.PI *
+          parseFloat(r.value) *
+          parseFloat(r.value) *
+          parseFloat(h.value)
+        return [[volume, r.cubeUnit]]
+      }
+    }
   }
 
   render() {
-    var unitsUsed = [
-      "Meters",
-      "Kilometers",
-      "Centimeters",
-      "Inches",
-      "Feet",
-      "Yards",
-      "Miles",
-    ]
+    var input1 = new VolumeCalculatorInput("Base Radius (r)", "r", null)
+    var input2 = new VolumeCalculatorInput("height (h)", "h", null)
     return (
-      <Card bg="light">
-        <Card.Header as="h5">Cylinder Calculator</Card.Header>
-        <Card.Body>
-          <Card.Text>
-            A generalized form of a cube. volume = length × width × height
-          </Card.Text>
-          <Flexbox
-            flexGrow={1}
-            flexDirection="column"
-            style={{ padding: 3 }}
-            maxWidth="500px"
-            maxHeight="600px"
-          >
-            <Flexbox>
-              <Flexbox flex={2}>All units:</Flexbox>
-              <Flexbox flex={1}>
-                <UnitSelector
-                  onUnitSelect={this.onAllUnitsChange}
-                  unitLabel={this.state.allUnits}
-                  units={unitsUsed}
-                />
-              </Flexbox>
-            </Flexbox>
-
-            <Flexbox>
-              <NumberInput
-                value={this.state.r.value}
-                label="Base Radius (r)"
-                onChange={this.handleChangeR}
-                unitLabel={this.state.r.label()}
-                onUnitSelect={this.onUnitSelectR}
-                units={unitsUsed}
-              />
-            </Flexbox>
-            <Flexbox>
-              <NumberInput
-                value={this.state.h.value}
-                label="Height (h)"
-                onChange={this.handleChangeH}
-                unitLabel={this.state.h.label()}
-                onUnitSelect={this.onUnitSelectH}
-                units={unitsUsed}
-              />
-            </Flexbox>
-            <Flexbox marginTop={"10px"} justifyContent="center">
-              <img src={cylinder} width="200" height="100" />
-            </Flexbox>
-            <Flexbox>Volume equals:</Flexbox>
-            <Flexbox>
-              <Flexbox
-                alignItems="center"
-                justifyContent="center"
-                marginLeft="3px"
-              >
-                <div style={{ color: "green" }}>
-                  {" "}
-                  {this.getVolume(this.state.r, this.state.h).map(result => {
-                    return <CalculationResults result={result} />
-                  })}
-                </div>
-              </Flexbox>
-            </Flexbox>
-            <Button
-              variant="outline-secondary"
-              onClick={() => {
-                this.setState({
-                  r: new units.Meters.type(""),
-                  hs: new units.Meters.type(""),
-                  allUnits: units.Meters.label,
-                })
-              }}
-            >
-              Clear all
-            </Button>
-          </Flexbox>
-        </Card.Body>
-      </Card>
+      <BaseVolumeCalculator
+        inputs={[input1, input2]}
+        name={"Cylinder Calculator"}
+        description={
+          " A generalized form of a cube. volume = length × width × height"
+        }
+        getVolume={this.getVolume}
+      />
     )
   }
 }
