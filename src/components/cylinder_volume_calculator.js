@@ -51,7 +51,7 @@ class CylinderVolumeCalculator extends React.Component {
         inputs={[input1, input2]}
         name={"Cylinder Calculator"}
         description={
-          " A generalized form of a cube. volume = length × width × height"
+          "Points at a fixed distance from a given straight line axis. volume = πr2h"
         }
         shapeImage={cylinder}
         getVolume={this.getVolume}
