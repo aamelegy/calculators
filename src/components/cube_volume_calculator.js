@@ -30,7 +30,7 @@ class CubeVolumeCalculator extends React.Component {
     return (
       <BaseVolumeCalculator
         inputs={[input1]}
-        name={"Cube Volume sCalculator"}
+        name={"Cube Volume Calculator"}
         description={
           "A cube is the three-dimensional analog of a square. volume = a3"
         }
