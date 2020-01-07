@@ -13,8 +13,6 @@ class CubeVolumeCalculator extends React.Component {
     var a = state.a
     if (a == null || a.value == "") {
       return [""]
-    } else if (isNaN(a.value)) {
-      return ["Error"]
     } else {
       var volume =
         parseFloat(a.value) * parseFloat(a.value) * parseFloat(a.value)
@@ -23,7 +21,7 @@ class CubeVolumeCalculator extends React.Component {
           parseFloat(a.toMeter()) *
           parseFloat(a.toMeter())
       )
-      return [new a.cubeUnit(volume), resultInMetersCube.toLitres()]
+      return [new a.cubeUnit(volume)]
     }
   }
 

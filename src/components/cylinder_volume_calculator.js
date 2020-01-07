@@ -14,8 +14,6 @@ class CylinderVolumeCalculator extends React.Component {
     var h = state.h
     if (r == null || h == null || r.value == "" || h.value == "") {
       return [""]
-    } else if (isNaN(r.value) || isNaN(h.value)) {
-      return ["Error"]
     } else {
       var allSelectedUnits = new Set()
       allSelectedUnits.add(r.constructor)

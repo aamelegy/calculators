@@ -6,6 +6,10 @@ class Meter {
   static label() {
     return "Meters"
   }
+  static cubeUnit() {
+    return MetersCube
+  }
+
   label() {
     return "Meters"
   }
@@ -28,6 +32,9 @@ class Centimeter {
     this.value = value
     this.cubeUnit = CubicCentimeters
   }
+  static cubeUnit() {
+    return CubicCentimeters
+  }
   static label() {
     return "Centimeters"
   }
@@ -44,6 +51,9 @@ class Inches {
     this.value = value
     this.cubeUnit = CubicInches
   }
+  static cubeUnit() {
+    return CubicInches
+  }
   static label() {
     return "Inches"
   }
@@ -58,7 +68,10 @@ class Inches {
 class Feet {
   constructor(value) {
     this.value = value
-    this.cubeUnit = "ft³"
+    this.cubeUnit = CubicFeet
+  }
+  static cubeUnit() {
+    return CubicFeet
   }
   static label() {
     return "Feet"
@@ -76,6 +89,9 @@ class Yards {
     this.value = value
     this.cubeUnit = CubicYards
   }
+  static cubeUnit() {
+    return CubicYards
+  }
   static label() {
     return "Yards"
   }
@@ -92,6 +108,9 @@ class Miles {
     this.value = value
     this.cubeUnit = CubicMiles
   }
+  static cubeUnit() {
+    return CubicMiles
+  }
   static label() {
     return "Miles"
   }
@@ -107,6 +126,9 @@ class Kilometer {
   constructor(value) {
     this.value = value
     this.cubeUnit = CubicKilometers
+  }
+  static cubeUnit() {
+    return CubicKilometers
   }
   static label() {
     return "Kilometers"
@@ -143,7 +165,7 @@ class MetersCube {
   toUKGallons() {
     return new UKGallons(this.value * 219.969)
   }
-  toUSGalloms() {
+  toUSGallons() {
     return new USGallons(this.value * 264.172)
   }
   toLitres() {
@@ -184,6 +206,11 @@ class CubicMiles {
   constructor(value) {
     this.value = value
   }
+  toCubicMeters() {
+    var value = this.value * 4.168e9
+    value = +value.toFixed(10)
+    return new MetersCube(value)
+  }
   static label() {
     return "mi³"
   }
@@ -195,6 +222,11 @@ class CubicMiles {
 class CubicCentimeters {
   constructor(value) {
     this.value = value
+  }
+  toCubicMeters() {
+    var value = this.value / 1000000
+    value = +value.toFixed(10)
+    return new MetersCube(value)
   }
   static label() {
     return "cm³"
@@ -208,6 +240,11 @@ class CubicYards {
   constructor(value) {
     this.value = value
   }
+  toCubicMeters() {
+    var value = this.value * 4.168e9
+    value = +value.toFixed(10)
+    return new MetersCube(value)
+  }
   static label() {
     return "km³"
   }
@@ -219,6 +256,11 @@ class CubicYards {
 class CubicKilometers {
   constructor(value) {
     this.value = value
+  }
+  toCubicMeters() {
+    var value = this.value * 61024
+    value = +value.toFixed(10)
+    return new MetersCube(value)
   }
   static label() {
     return "km³"
@@ -232,6 +274,11 @@ class CubicInches {
   constructor(value) {
     this.value = value
   }
+  toCubicMeters() {
+    var value = this.value / 61024
+    value = +value.toFixed(10)
+    return new MetersCube(value)
+  }
   static label() {
     return "in³"
   }
@@ -242,6 +289,11 @@ class CubicInches {
 class CubicFeet {
   constructor(value) {
     this.value = value
+  }
+  toCubicMeters() {
+    var value = this.value / 35.315
+    value = +value.toFixed(10)
+    return new MetersCube(value)
   }
   static label() {
     return "ft³"
@@ -308,5 +360,6 @@ var units = {
   Feet: new Unit("Feet", Feet, 5),
   Yards: new Unit("Yards", Yards, 6),
   Miles: new Unit("Miles", Miles, 7),
+  CubicInches: new Unit("CubicInches", CubicInches, 8),
 }
 export default units

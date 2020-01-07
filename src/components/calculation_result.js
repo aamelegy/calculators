@@ -18,8 +18,10 @@ class CalculationResult extends React.Component {
           <InputGroup className="mb-3">
             <Form.Control
               readOnly
-              defaultValue={this.props.result.value}
-              ref={textarea => (resultBoxes[this.props.result[0]] = textarea)}
+              value={this.props.result.value}
+              ref={textarea =>
+                (resultBoxes[this.props.result.value] = textarea)
+              }
             />
             <InputGroup.Append>
               <OverlayTrigger

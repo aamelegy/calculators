@@ -22,8 +22,6 @@ class RectangularVolumeCalculator extends React.Component {
       z.value == ""
     ) {
       return [""]
-    } else if (isNaN(x.value) || isNaN(y.value) || isNaN(z.value)) {
-      return ["Error"]
     } else {
       var allSelectedUnits = new Set()
       allSelectedUnits.add(x.constructor)

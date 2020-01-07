@@ -3,7 +3,7 @@ import NumberInput from "../components/number_input"
 import Card from "react-bootstrap/Card"
 import units from "../components/units"
 import UnitSelector from "../components/unit_selector"
-import CalculationResults from "./calculation_result"
+import CalculationResults from "./calculation_results"
 import Flexbox from "flexbox-react"
 import Button from "react-bootstrap/Button"
 
@@ -19,8 +19,16 @@ class BaseVolumeCalculator extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this)
     this.onUnitSelect = this.onUnitSelect.bind(this)
     this.onAllUnitsChange = this.onAllUnitsChange.bind(this)
+    this.getInputUnits = this.getInputUnits.bind(this)
   }
 
+  getInputUnits() {
+    var units = []
+    this.props.inputs.forEach(element => {
+      units.push(this.state[element.name].constructor)
+    })
+    return units
+  }
   handleInputChange(inputName, event) {
     var value = event.target.value
     var newState = {}
@@ -62,6 +70,7 @@ class BaseVolumeCalculator extends React.Component {
       "Yards",
       "Miles",
     ]
+
     return (
       <Card bg="light">
         <Card.Header as="h5">{this.props.name}</Card.Header>
@@ -72,7 +81,7 @@ class BaseVolumeCalculator extends React.Component {
             flexDirection="column"
             style={{ padding: 3 }}
             maxWidth="500px"
-            maxHeight="600px"
+            maxHeight="800px"
           >
             <Flexbox>
               <Flexbox flex={2}>All units:</Flexbox>
@@ -107,9 +116,10 @@ class BaseVolumeCalculator extends React.Component {
               <Flexbox alignItems="center" justifyContent="center">
                 <div style={{ color: "green" }}>
                   {" "}
-                  {this.props.getVolume(this.state).map(result => {
-                    return <CalculationResult result={result} />
-                  })}
+                  <CalculationResults
+                    result={this.props.getVolume(this.state)[0]}
+                    units={this.getInputUnits()}
+                  />
                 </div>
               </Flexbox>
             </Flexbox>
