@@ -43,7 +43,12 @@ class RectangularVolumeCalculator extends React.Component {
       } else {
         var volume =
           parseFloat(x.value) * parseFloat(y.value) * parseFloat(z.value)
-        return [[volume, x.cubeUnit]]
+        var resultInMetersCube = new units.MetersCube.type(
+          parseFloat(x.toMeter()) *
+            parseFloat(y.toMeter()) *
+            parseFloat(z.toMeter())
+        )
+        return [new x.cubeUnit(volume), resultInMetersCube.toLitres()]
       }
     }
   }
@@ -55,7 +60,7 @@ class RectangularVolumeCalculator extends React.Component {
     return (
       <BaseVolumeCalculator
         inputs={[input1, input2, input3]}
-        name={"Cuboid Calculator"}
+        name={"Cuboid Volume Calculator"}
         description={
           " A generalized form of a cube. volume = length × width × height"
         }

@@ -3,7 +3,7 @@ import NumberInput from "../components/number_input"
 import Card from "react-bootstrap/Card"
 import units from "../components/units"
 import UnitSelector from "../components/unit_selector"
-import CalculationResults from "../components/calculation_results"
+import CalculationResults from "./calculation_result"
 import Flexbox from "flexbox-react"
 import Button from "react-bootstrap/Button"
 
@@ -108,7 +108,7 @@ class BaseVolumeCalculator extends React.Component {
                 <div style={{ color: "green" }}>
                   {" "}
                   {this.props.getVolume(this.state).map(result => {
-                    return <CalculationResults result={result} />
+                    return <CalculationResult result={result} />
                   })}
                 </div>
               </Flexbox>

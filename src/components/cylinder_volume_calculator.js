@@ -38,7 +38,7 @@ class CylinderVolumeCalculator extends React.Component {
           parseFloat(r.value) *
           parseFloat(r.value) *
           parseFloat(h.value)
-        return [[volume, r.cubeUnit]]
+        return [new r.cubeUnit(volume)]
       }
     }
   }
@@ -49,7 +49,7 @@ class CylinderVolumeCalculator extends React.Component {
     return (
       <BaseVolumeCalculator
         inputs={[input1, input2]}
-        name={"Cylinder Calculator"}
+        name={"Cylinder Volume Calculator"}
         description={
           "Points at a fixed distance from a given straight line axis. volume = πr2h"
         }

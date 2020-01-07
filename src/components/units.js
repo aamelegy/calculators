@@ -1,7 +1,7 @@
 class Meter {
   constructor(value) {
     this.value = value
-    this.cubeUnit = "m³"
+    this.cubeUnit = MetersCube
   }
   static label() {
     return "Meters"
@@ -26,7 +26,7 @@ class Meter {
 class Centimeter {
   constructor(value) {
     this.value = value
-    this.cubeUnit = "cm³"
+    this.cubeUnit = CubicCentimeters
   }
   static label() {
     return "Centimeters"
@@ -42,7 +42,7 @@ class Centimeter {
 class Inches {
   constructor(value) {
     this.value = value
-    this.cubeUnit = "in³"
+    this.cubeUnit = CubicInches
   }
   static label() {
     return "Inches"
@@ -74,7 +74,7 @@ class Feet {
 class Yards {
   constructor(value) {
     this.value = value
-    this.cubeUnit = "yd³"
+    this.cubeUnit = CubicYards
   }
   static label() {
     return "Yards"
@@ -90,7 +90,7 @@ class Yards {
 class Miles {
   constructor(value) {
     this.value = value
-    this.cubeUnit = "mi³"
+    this.cubeUnit = CubicMiles
   }
   static label() {
     return "Miles"
@@ -106,7 +106,7 @@ class Miles {
 class Kilometer {
   constructor(value) {
     this.value = value
-    this.cubeUnit = "km³"
+    this.cubeUnit = CubicKilometers
   }
   static label() {
     return "Kilometers"
@@ -132,42 +132,170 @@ class MetersCube {
     this.value = value
   }
   static label() {
-    return "MetersCube"
+    return "m³"
   }
   label() {
-    return "MetersCube"
+    return "m³"
   }
   toMetersCube() {
     return this.value
+  }
+  toUKGallons() {
+    return new UKGallons(this.value * 219.969)
+  }
+  toUSGalloms() {
+    return new USGallons(this.value * 264.172)
+  }
+  toLitres() {
+    return new Litres(this.value * 1000)
   }
   toFormatted(type) {
     if (type === Centimeter) {
       var value = this.value * 1000000
       value = +value.toFixed(10)
-      return [value, " cm³"]
+      return new CubicCentimeters(value)
     } else if (type === Meter) {
-      return [this.value, " m³"]
+      return this
     } else if (type === Kilometer) {
       var value = this.value / 1000000000
       value = +value.toFixed(10)
-      return [value, " km³"]
+      return new CubicKilometers(value)
     } else if (type === Inches) {
       var value = this.value * 61024
       value = +value.toFixed(10)
-      return [value, " in³"]
+      return new CubicInches(value)
     } else if (type === Feet) {
       var value = this.value * 35.315
       value = +value.toFixed(10)
-      return [value, " ft³"]
+      return new CubicFeet(value)
     } else if (type === Yards) {
       var value = this.value * 1.308
       value = +value.toFixed(10)
-      return [value, " yd³"]
+      return new CubicYards(value)
     } else if (type === Miles) {
       var value = this.value / 4.168e9
       value = +value.toFixed(10)
-      return [value, " mi³"]
+      return new CubicMiles(value)
     }
+  }
+}
+
+class CubicMiles {
+  constructor(value) {
+    this.value = value
+  }
+  static label() {
+    return "mi³"
+  }
+  label() {
+    return "mi³"
+  }
+}
+
+class CubicCentimeters {
+  constructor(value) {
+    this.value = value
+  }
+  static label() {
+    return "cm³"
+  }
+  label() {
+    return "cm³"
+  }
+}
+
+class CubicYards {
+  constructor(value) {
+    this.value = value
+  }
+  static label() {
+    return "km³"
+  }
+  label() {
+    return "km³"
+  }
+}
+
+class CubicKilometers {
+  constructor(value) {
+    this.value = value
+  }
+  static label() {
+    return "km³"
+  }
+  label() {
+    return "km³"
+  }
+}
+
+class CubicInches {
+  constructor(value) {
+    this.value = value
+  }
+  static label() {
+    return "in³"
+  }
+  label() {
+    return "in³"
+  }
+}
+class CubicFeet {
+  constructor(value) {
+    this.value = value
+  }
+  static label() {
+    return "ft³"
+  }
+  label() {
+    return "ft³"
+  }
+}
+
+class Barrels {
+  constructor(value) {
+    this.value = value
+  }
+  static label() {
+    return "Barrels"
+  }
+  label() {
+    return "Barrels"
+  }
+}
+
+class Litres {
+  constructor(value) {
+    this.value = value
+  }
+  static label() {
+    return "Litres"
+  }
+  label() {
+    return "Litres"
+  }
+}
+
+class USGallons {
+  constructor(value) {
+    this.value = value
+  }
+  static label() {
+    return "Gallons (US)"
+  }
+  label() {
+    return "Gallons (US)"
+  }
+}
+
+class UKGallons {
+  constructor(value) {
+    this.value = value
+  }
+  static label() {
+    return "Gallons (UK)"
+  }
+  label() {
+    return "Gallons (UK)"
   }
 }
 

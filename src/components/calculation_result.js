@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button"
 import OverlayTrigger from "react-bootstrap/OverlayTrigger"
 import Tooltip from "react-bootstrap/Tooltip"
 
-class CalculationResults extends React.Component {
+class CalculationResult extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -18,7 +18,7 @@ class CalculationResults extends React.Component {
           <InputGroup className="mb-3">
             <Form.Control
               readOnly
-              defaultValue={this.props.result[0]}
+              defaultValue={this.props.result.value}
               ref={textarea => (resultBoxes[this.props.result[0]] = textarea)}
             />
             <InputGroup.Append>
@@ -31,7 +31,7 @@ class CalculationResults extends React.Component {
                 <Button
                   variant="outline-secondary"
                   onClick={() => {
-                    const el = resultBoxes[this.props.result[0]]
+                    const el = resultBoxes[this.props.result.value]
                     el.select()
                     document.execCommand("copy")
                   }}
@@ -43,11 +43,11 @@ class CalculationResults extends React.Component {
           </InputGroup>
         </Flexbox>
         <Flexbox flex={1} marginLeft="8px" marginTop="6px">
-          {this.props.result[1] ? this.props.result[1] : "Units"}
+          {this.props.result ? this.props.result.label() : "Units"}
         </Flexbox>
       </Flexbox>
     )
   }
 }
 
-export default CalculationResults
+export default CalculationResult

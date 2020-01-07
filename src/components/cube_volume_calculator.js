@@ -18,7 +18,12 @@ class CubeVolumeCalculator extends React.Component {
     } else {
       var volume =
         parseFloat(a.value) * parseFloat(a.value) * parseFloat(a.value)
-      return [[volume, a.cubeUnit]]
+      var resultInMetersCube = new units.MetersCube.type(
+        parseFloat(a.toMeter()) *
+          parseFloat(a.toMeter()) *
+          parseFloat(a.toMeter())
+      )
+      return [new a.cubeUnit(volume), resultInMetersCube.toLitres()]
     }
   }
 
@@ -27,7 +32,7 @@ class CubeVolumeCalculator extends React.Component {
     return (
       <BaseVolumeCalculator
         inputs={[input1]}
-        name={"Cube Calculator"}
+        name={"Cube Volume sCalculator"}
         description={
           "A cube is the three-dimensional analog of a square. volume = a3"
         }
