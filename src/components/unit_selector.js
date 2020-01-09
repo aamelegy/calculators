@@ -13,7 +13,7 @@ class UnitSelector extends React.Component {
     var inputUnits = this.props.units
     return (
       <Flexbox>
-        <Dropdown onSelect={this.props.onUnitSelect}>
+        <Dropdown onSelect={this.props.onUnitSelect} alignRight={true}>
           <Dropdown.Toggle variant="secondary">{unitLabel}</Dropdown.Toggle>
           <Dropdown.Menu>
             {Object.values(inputUnits).map(function(unit) {
