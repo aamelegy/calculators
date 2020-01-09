@@ -70,7 +70,6 @@ class BaseVolumeCalculator extends React.Component {
   render() {
     var unitsUsed = convert().list("length")
     var volumeUnits = convert().list("volume")
-    console.log(this.state.resultUnit)
     return (
       <Card bg="light">
         <Card.Header as="h5">{this.props.name}</Card.Header>
