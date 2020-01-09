@@ -3,6 +3,7 @@ import units from "../components/units"
 import VolumeCalculatorInput from "../model/volume_calculator_input"
 import BaseVolumeCalculator from "../components/base_volume_calculator"
 import cuboid from "../images/cuboid.png"
+var convert = require("convert-units")
 
 class RectangularVolumeCalculator extends React.Component {
   constructor(props) {
@@ -17,36 +18,37 @@ class RectangularVolumeCalculator extends React.Component {
       x == null ||
       y == null ||
       z == null ||
-      x.value == "" ||
-      y.value == "" ||
-      z.value == ""
+      x[0] == "" ||
+      y[0] == "" ||
+      z[0] == ""
     ) {
       return [""]
     } else {
       var allSelectedUnits = new Set()
-      allSelectedUnits.add(x.constructor)
-      allSelectedUnits.add(y.constructor)
-      allSelectedUnits.add(z.constructor)
+      allSelectedUnits.add(x[1])
+      allSelectedUnits.add(y[1])
+      allSelectedUnits.add(z[1])
       if (allSelectedUnits.size > 1) {
-        var resultInMetersCube = new units.MetersCube.type(
-          parseFloat(x.toMeter()) *
-            parseFloat(y.toMeter()) *
-            parseFloat(z.toMeter())
-        )
-        var result = []
-        allSelectedUnits.forEach(unit => {
-          result.push(resultInMetersCube.toFormatted(unit))
-        })
-        return result
+        var xc = convert(x[0])
+          .from(x[1])
+          .to("m")
+        var yc = convert(y[0])
+          .from(y[1])
+          .to("m")
+        var zc = convert(z[0])
+          .from(z[1])
+          .to("m")
+        var volume = xc * yc * zc
+        var volumeInResultUnit = convert(volume)
+          .from("m3")
+          .to(state.resultUnit)
+        return volumeInResultUnit
       } else {
-        var volume =
-          parseFloat(x.value) * parseFloat(y.value) * parseFloat(z.value)
-        var resultInMetersCube = new units.MetersCube.type(
-          parseFloat(x.toMeter()) *
-            parseFloat(y.toMeter()) *
-            parseFloat(z.toMeter())
-        )
-        return [new x.cubeUnit(volume), resultInMetersCube.toLitres()]
+        var volume = x[0] * y[0] * z[0]
+        var volumeInResultUnit = convert(volume)
+          .from(x[1] + "3")
+          .to(state.resultUnit)
+        return volumeInResultUnit
       }
     }
   }

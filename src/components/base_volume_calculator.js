@@ -4,24 +4,30 @@ import Card from "react-bootstrap/Card"
 import units from "../components/units"
 import UnitSelector from "../components/unit_selector"
 import CalculationResults from "./calculation_results"
+import NewCalculationResult from "./new_calculation_result"
 import Flexbox from "flexbox-react"
 import Button from "react-bootstrap/Button"
+var convert = require("convert-units")
 
 class BaseVolumeCalculator extends React.Component {
   constructor(props) {
     super(props)
     var initState = {}
     this.props.inputs.forEach(element => {
-      initState[element.name] = new units.Meters.type("")
+      initState[element.name] = ["", "m"]
     })
-    initState.allUnits = units.Meters.label
+    initState.allUnits = "m"
+    initState.resultUnit = "m3"
     this.state = { ...initState }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.onUnitSelect = this.onUnitSelect.bind(this)
     this.onAllUnitsChange = this.onAllUnitsChange.bind(this)
     this.getInputUnits = this.getInputUnits.bind(this)
+    this.onResultUnitChange = this.onResultUnitChange.bind(this)
   }
-
+  onResultUnitChange(eventKey) {
+    this.setState({ resultUnit: eventKey })
+  }
   getInputUnits() {
     var units = []
     this.props.inputs.forEach(element => {
@@ -32,45 +38,39 @@ class BaseVolumeCalculator extends React.Component {
   handleInputChange(inputName, event) {
     var value = event.target.value
     var newState = {}
-    newState[inputName] = new this.state[inputName].constructor(value)
+    var currentValueUnit = this.state[inputName][1]
+    newState[inputName] = [value, currentValueUnit]
     this.setState({ ...newState })
   }
   onUnitSelect(inputName, eventKey) {
-    var currentValue = this.state[inputName].value
+    var currentValue = this.state[inputName][0]
     var newState = {}
-    newState[inputName] = new units[eventKey].type(currentValue)
+    newState[inputName] = [currentValue, eventKey]
     this.setState({ ...newState })
   }
   onAllUnitsChange(eventKey) {
     var newState = {}
     this.props.inputs.forEach(element => {
-      newState[element.name] = new units[eventKey].type(
-        this.state[element.name].value
-      )
+      var currentValue = this.state[element.name][0]
+      newState[element.name] = [currentValue, eventKey]
     })
-    newState.allUnits = units[eventKey].label
+    newState.allUnits = eventKey
     this.setState({ ...newState })
   }
   clearAll() {
     var newState = {}
     this.props.inputs.forEach(element => {
-      newState[element.name] = new units.Meters.type("")
+      newState[element.name] = ["", "m"]
     })
-    newState.allUnits = units.Meters.label
+    newState.allUnits = "m"
+    console.log(newState)
     this.setState({ ...newState })
   }
 
   render() {
-    var unitsUsed = [
-      "Meters",
-      "Kilometers",
-      "Centimeters",
-      "Inches",
-      "Feet",
-      "Yards",
-      "Miles",
-    ]
-
+    var unitsUsed = convert().list("length")
+    var volumeUnits = convert().list("volume")
+    console.log(this.state.resultUnit)
     return (
       <Card bg="light">
         <Card.Header as="h5">{this.props.name}</Card.Header>
@@ -97,10 +97,10 @@ class BaseVolumeCalculator extends React.Component {
               return (
                 <Flexbox>
                   <NumberInput
-                    value={this.state[element.name].value}
+                    value={this.state[element.name][0]}
                     label={element.label}
                     onChange={this.handleInputChange.bind(this, element.name)}
-                    unitLabel={this.state[element.name].label()}
+                    unitLabel={this.state[element.name][1]}
                     onUnitSelect={this.onUnitSelect.bind(this, element.name)}
                     units={unitsUsed}
                   />
@@ -116,9 +116,11 @@ class BaseVolumeCalculator extends React.Component {
               <Flexbox alignItems="center" justifyContent="center">
                 <div style={{ color: "green" }}>
                   {" "}
-                  <CalculationResults
-                    result={this.props.getVolume(this.state)[0]}
-                    units={this.getInputUnits()}
+                  <NewCalculationResult
+                    result={this.props.getVolume(this.state)}
+                    unit={this.state.resultUnit}
+                    units={volumeUnits}
+                    onUnitChange={this.onResultUnitChange}
                   />
                 </div>
               </Flexbox>

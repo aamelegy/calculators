@@ -3,6 +3,7 @@ import units from "../components/units"
 import VolumeCalculatorInput from "../model/volume_calculator_input"
 import BaseVolumeCalculator from "../components/base_volume_calculator"
 import cube from "../images/cube.png"
+var convert = require("convert-units")
 
 class CubeVolumeCalculator extends React.Component {
   constructor(props) {
@@ -11,17 +12,15 @@ class CubeVolumeCalculator extends React.Component {
 
   getVolume(state) {
     var a = state.a
-    if (a == null || a.value == "") {
+    if (a == null || a[0] == "") {
       return [""]
     } else {
-      var volume =
-        parseFloat(a.value) * parseFloat(a.value) * parseFloat(a.value)
-      var resultInMetersCube = new units.MetersCube.type(
-        parseFloat(a.toMeter()) *
-          parseFloat(a.toMeter()) *
-          parseFloat(a.toMeter())
-      )
-      return [new a.cubeUnit(volume)]
+      var volume = parseFloat(a[0]) * parseFloat(a[0]) * parseFloat(a[0])
+      var unit = state.resultUnit
+      var volumeInResultUnit = convert(volume)
+        .from(a[1] + "3")
+        .to(unit)
+      return volumeInResultUnit
     }
   }
 
