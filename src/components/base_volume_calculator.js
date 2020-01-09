@@ -110,8 +110,8 @@ class BaseVolumeCalculator extends React.Component {
             <Flexbox marginTop={"10px"} justifyContent="center">
               <img
                 src={this.props.shapeImage}
-                width="75"
-                height="95"
+                width="90"
+                height="90"
                 alt="Shape Image"
               />
             </Flexbox>
