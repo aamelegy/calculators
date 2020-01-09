@@ -11,7 +11,7 @@ class Main extends React.Component {
 
   render() {
     return (
-      <Flexbox height="100vh" flexDirection="column">
+      <Flexbox height="100vh" flexDirection="column" alignItems="center">
         <div className="application">
           <Helmet>
             <meta charSet="utf-8" />
@@ -37,6 +37,7 @@ class Main extends React.Component {
         >
           Volume Calculator
         </Flexbox>
+
         <VolumeCalculators />
       </Flexbox>
     )
