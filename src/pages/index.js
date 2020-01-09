@@ -19,6 +19,10 @@ class Main extends React.Component {
               name="description"
               content="A free fast volume calculator that can compute volumes of common shapes like cuboid, cube, sphere, cylinder, tank.."
             />
+            <meta
+              name="google-site-verification"
+              content="GsSM6DgwCg7plHe8YkkB6Xjj6gL7_w1hGO76ZCsNhyk"
+            />
             <meta name="robots" content="all"></meta>
             <title>Volume Calculators</title>
           </Helmet>
