@@ -53,6 +53,12 @@ class RectangularVolumeCalculator extends React.Component {
     }
   }
 
+  getDescription() {
+    return " A generalized form of a cube. volume = length × width × height"
+  }
+  getName() {
+    return "Cuboid Volume Calculator"
+  }
   render() {
     var input1 = new VolumeCalculatorInput("length (l)", "l", null)
     var input2 = new VolumeCalculatorInput("width (w)", "w", null)
@@ -60,10 +66,8 @@ class RectangularVolumeCalculator extends React.Component {
     return (
       <BaseVolumeCalculator
         inputs={[input1, input2, input3]}
-        name={"Cuboid Volume Calculator"}
-        description={
-          " A generalized form of a cube. volume = length × width × height"
-        }
+        name={this.getName()}
+        description={this.getDescription()}
         shapeImage={cuboid}
         getVolume={this.getVolume}
       />
