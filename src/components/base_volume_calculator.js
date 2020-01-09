@@ -14,10 +14,10 @@ class BaseVolumeCalculator extends React.Component {
     super(props)
     var initState = {}
     this.props.inputs.forEach(element => {
-      initState[element.name] = ["", "m"]
+      initState[element.name] = ["", "cm"]
     })
-    initState.allUnits = "m"
-    initState.resultUnit = "m3"
+    initState.allUnits = "cm"
+    initState.resultUnit = "cm3"
     this.state = { ...initState }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.onUnitSelect = this.onUnitSelect.bind(this)
@@ -60,9 +60,9 @@ class BaseVolumeCalculator extends React.Component {
   clearAll() {
     var newState = {}
     this.props.inputs.forEach(element => {
-      newState[element.name] = ["", "m"]
+      newState[element.name] = ["", "cm"]
     })
-    newState.allUnits = "m"
+    newState.allUnits = "cm"
     console.log(newState)
     this.setState({ ...newState })
   }

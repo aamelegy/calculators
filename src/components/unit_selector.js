@@ -9,7 +9,7 @@ class UnitSelector extends React.Component {
     super(props)
   }
   render() {
-    var unitLabel = convert().describe(this.props.unitLabel).plural
+    var unitLabel = this.props.unitLabel
     var inputUnits = this.props.units
     return (
       <Flexbox>
@@ -22,7 +22,7 @@ class UnitSelector extends React.Component {
                   active={unit.plural === unitLabel}
                   eventKey={unit.abbr}
                 >
-                  {unit.plural}
+                  {unit.plural + " (" + unit.abbr + ")"}
                 </Dropdown.Item>
               )
             })}
