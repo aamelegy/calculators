@@ -14,13 +14,13 @@ class VolumeCalculators extends React.Component {
   render() {
     return (
       <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
-        <Tab eventKey="home" title="Cuboid Volume Calculator">
+        <Tab eventKey="home" title="Cuboid">
           <RectangularVolumeCalculator />
         </Tab>
-        <Tab eventKey="profile" title="Cylinder Volume Calculator">
+        <Tab eventKey="profile" title="Cylinder">
           <CylinderVolumeCalculator />
         </Tab>
-        <Tab eventKey="contact" title="Cube Volume Calculator">
+        <Tab eventKey="contact" title="Cube">
           <CubeVolumeCalculator />
         </Tab>
       </Tabs>
