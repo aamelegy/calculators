@@ -17,7 +17,7 @@ class VolumeCalculators extends React.Component {
     return (
       <Tabs defaultActiveKey="cuboid" id="uncontrolled-tab-example">
         <Tab eventKey="cuboid" title="Cuboid">
-          <Flexbox>
+          <Flexbox flexWrap="wrap">
             <Flexbox>
               <RectangularVolumeCalculator />
             </Flexbox>
@@ -26,13 +26,13 @@ class VolumeCalculators extends React.Component {
               maxWidth={"600px"}
               margin={"10px"}
             >
-              {`A rectangular tank is a generalized form of a cube, where the sides can have varied lengths. It is bounded by six faces, three of which meet at its vertices, and all of which are perpendicular to their respective adjacent faces. The equation for calculating the volume of a rectangle is shown below:
+              {`In a rectangular cuboid, all angles are right angles, and opposite faces of a cuboid are equal. By definition this makes it a right rectangular prism, and the terms rectangular parallelepiped or orthogonal parallelepiped are also used to designate this polyhedron. The terms "rectangular prism" and "oblong prism", however, are ambiguous, since they do not specify all angles.
 
-              volume= length × width × height
+              The square cuboid, square box, or right square prism (also ambiguously called square prism) is a special case of the cuboid in which at least two faces are squares. It has Schläfli symbol {4} × { }, and its symmetry is doubled from [2,2] to [4,2], order 16.
               
-              EX: Darby likes cake. She goes to the gym for 4 hours a day, every day, to compensate for her love of cake. She plans to hike the Kalalau Trail in Kauai and though extremely fit, Darby worries about her ability to complete the trail due to her lack of cake. She decides to pack only the essentials and wants to stuff her perfectly rectangular pack of length, width, and height 4 ft, 3 ft and 2 ft respectively, with cake. The exact volume of cake she can fit into her pack is calculated below:
+              The cube is a special case of the square cuboid in which all six faces are squares. It has Schläfli symbol {4,3}, and its symmetry is raised from [2,2], to [4,3], order 48.
               
-              volume = 2 × 3 × 4 = 24 ft3`}
+              If the dimensions of a rectangular cuboid are a, b and c, then its volume is abc and its surface area is 2(ab + ac + bc).`}
             </Flexbox>
           </Flexbox>
         </Tab>
