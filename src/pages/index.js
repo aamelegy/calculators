@@ -4,6 +4,7 @@ import VolumeCalculators from "../components/volume_calculators"
 import Flexbox from "flexbox-react"
 import { Helmet } from "react-helmet"
 import ReactGA from "react-ga"
+ReactGA.initialize("UA-155271009-1")
 
 //export PATH=${HOME}/.brew/bin:${PATH}
 class Main extends React.Component {
@@ -12,8 +13,6 @@ class Main extends React.Component {
   }
 
   render() {
-    ReactGA.initialize("UA-155271009-1")
-    ReactGA.pageview(window.location.pathname + window.location.search)
     return (
       <Flexbox height="100vh" flexDirection="column" alignItems="center">
         <div className="application">
