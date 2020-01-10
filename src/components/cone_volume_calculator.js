@@ -2,6 +2,7 @@ import React from "react"
 import VolumeCalculatorInput from "../model/volume_calculator_input"
 import BaseVolumeCalculator from "../components/base_volume_calculator"
 import cone from "../images/cone.png"
+import ReactGA from "react-ga"
 var convert = require("convert-units")
 
 class ConeVolumeCalculator extends React.Component {
@@ -29,6 +30,11 @@ class ConeVolumeCalculator extends React.Component {
         var volumeInResultUnit = convert(volume)
           .from("m3")
           .to(state.resultUnit)
+        ReactGA.event({
+          category: "finishInput",
+          action: "calculateDifferentUnits",
+          label: "cone",
+        })
         return volumeInResultUnit
       } else {
         var volume =
@@ -36,6 +42,11 @@ class ConeVolumeCalculator extends React.Component {
         var volumeInResultUnit = convert(volume)
           .from(r[1] + "3")
           .to(state.resultUnit)
+        ReactGA.event({
+          category: "finishInput",
+          action: "calculateSameUnits",
+          label: "cone",
+        })
         return volumeInResultUnit
       }
     }

@@ -1,8 +1,8 @@
 import React from "react"
-import units from "../components/units"
 import VolumeCalculatorInput from "../model/volume_calculator_input"
 import BaseVolumeCalculator from "../components/base_volume_calculator"
 import cuboid from "../images/cuboid.png"
+import ReactGA from "react-ga"
 var convert = require("convert-units")
 
 class RectangularVolumeCalculator extends React.Component {
@@ -42,12 +42,22 @@ class RectangularVolumeCalculator extends React.Component {
         var volumeInResultUnit = convert(volume)
           .from("m3")
           .to(state.resultUnit)
+        ReactGA.event({
+          category: "finishInput",
+          action: "calculateDifferentUnits",
+          label: "cuboid",
+        })
         return volumeInResultUnit
       } else {
         var volume = x[0] * y[0] * z[0]
         var volumeInResultUnit = convert(volume)
           .from(x[1] + "3")
           .to(state.resultUnit)
+        ReactGA.event({
+          category: "finishInput",
+          action: "calculateSameUnits",
+          label: "cuboid",
+        })
         return volumeInResultUnit
       }
     }

@@ -2,6 +2,7 @@ import React from "react"
 import VolumeCalculatorInput from "../model/volume_calculator_input"
 import BaseVolumeCalculator from "../components/base_volume_calculator"
 import sphere from "../images/sphere.png"
+import ReactGA from "react-ga"
 var convert = require("convert-units")
 
 class SphereVolumeCalculator extends React.Component {
@@ -24,6 +25,11 @@ class SphereVolumeCalculator extends React.Component {
       var volumeInResultUnit = convert(volume)
         .from(r[1] + "3")
         .to(unit)
+      ReactGA.event({
+        category: "finishInput",
+        action: "calculateSameUnits",
+        label: "sphere",
+      })
       return volumeInResultUnit
     }
   }

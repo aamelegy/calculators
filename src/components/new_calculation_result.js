@@ -4,6 +4,7 @@ import InputGroup from "react-bootstrap/InputGroup"
 import FormControl from "react-bootstrap/FormControl"
 import Button from "react-bootstrap/Button"
 import UnitSelector from "../components/unit_selector"
+import ReactGA from "react-ga"
 
 class NewCalculationResult extends React.Component {
   constructor(props) {
@@ -29,6 +30,10 @@ class NewCalculationResult extends React.Component {
                 const el = this.textarea
                 el.select()
                 document.execCommand("copy")
+                ReactGA.event({
+                  category: "clicks",
+                  action: "copy",
+                })
               }}
             >
               Copy

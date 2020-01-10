@@ -3,6 +3,7 @@ import units from "../components/units"
 import VolumeCalculatorInput from "../model/volume_calculator_input"
 import BaseVolumeCalculator from "../components/base_volume_calculator"
 import cylinder from "../images/cylinder.png"
+import ReactGA from "react-ga"
 var convert = require("convert-units")
 
 class CylinderVolumeCalculator extends React.Component {
@@ -30,6 +31,11 @@ class CylinderVolumeCalculator extends React.Component {
         var volumeInResultUnit = convert(volume)
           .from("m3")
           .to(state.resultUnit)
+        ReactGA.event({
+          category: "finishInput",
+          action: "calculateDifferentUnits",
+          label: "cylinder",
+        })
         return volumeInResultUnit
       } else {
         var volume =
@@ -37,6 +43,11 @@ class CylinderVolumeCalculator extends React.Component {
         var volumeInResultUnit = convert(volume)
           .from(r[1] + "3")
           .to(state.resultUnit)
+        ReactGA.event({
+          category: "finishInput",
+          action: "calculateSameUnits",
+          label: "cylinder",
+        })
         return volumeInResultUnit
       }
     }

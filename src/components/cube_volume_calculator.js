@@ -1,8 +1,8 @@
 import React from "react"
-import units from "../components/units"
 import VolumeCalculatorInput from "../model/volume_calculator_input"
 import BaseVolumeCalculator from "../components/base_volume_calculator"
 import cube from "../images/cube.png"
+import ReactGA from "react-ga"
 var convert = require("convert-units")
 
 class CubeVolumeCalculator extends React.Component {
@@ -20,6 +20,11 @@ class CubeVolumeCalculator extends React.Component {
       var volumeInResultUnit = convert(volume)
         .from(a[1] + "3")
         .to(unit)
+      ReactGA.event({
+        category: "finishInput",
+        action: "calculateSameUnits",
+        label: "cube",
+      })
       return volumeInResultUnit
     }
   }

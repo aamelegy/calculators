@@ -1,14 +1,33 @@
 import React from "react"
 import NumberInput from "../components/number_input"
 import Card from "react-bootstrap/Card"
-import units from "../components/units"
 import UnitSelector from "../components/unit_selector"
-import CalculationResults from "./calculation_results"
 import NewCalculationResult from "./new_calculation_result"
 import Flexbox from "flexbox-react"
 import Button from "react-bootstrap/Button"
-var convert = require("convert-units")
+import ReactGA from "react-ga"
 
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  InstapaperShareButton,
+  LineShareButton,
+  LinkedinShareButton,
+  LivejournalShareButton,
+  MailruShareButton,
+  OKShareButton,
+  PinterestShareButton,
+  PocketShareButton,
+  RedditShareButton,
+  TelegramShareButton,
+  TumblrShareButton,
+  TwitterShareButton,
+  ViberShareButton,
+  VKShareButton,
+  WhatsappShareButton,
+  WorkplaceShareButton,
+} from "react-share"
+var convert = require("convert-units")
 class BaseVolumeCalculator extends React.Component {
   constructor(props) {
     super(props)
@@ -27,6 +46,11 @@ class BaseVolumeCalculator extends React.Component {
   }
   onResultUnitChange(eventKey) {
     this.setState({ resultUnit: eventKey })
+    ReactGA.event({
+      category: "clicks",
+      action: "changeResultUnit",
+      label: eventKey,
+    })
   }
   getInputUnits() {
     var units = []
@@ -41,12 +65,22 @@ class BaseVolumeCalculator extends React.Component {
     var currentValueUnit = this.state[inputName][1]
     newState[inputName] = [value, currentValueUnit]
     this.setState({ ...newState })
+    ReactGA.event({
+      category: "typing",
+      action: "inputValue",
+      label: inputName,
+    })
   }
   onUnitSelect(inputName, eventKey) {
     var currentValue = this.state[inputName][0]
     var newState = {}
     newState[inputName] = [currentValue, eventKey]
     this.setState({ ...newState })
+    ReactGA.event({
+      category: "clicks",
+      action: "changeInputUnit",
+      label: eventKey,
+    })
   }
   onAllUnitsChange(eventKey) {
     var newState = {}
@@ -56,6 +90,11 @@ class BaseVolumeCalculator extends React.Component {
     })
     newState.allUnits = eventKey
     this.setState({ ...newState })
+    ReactGA.event({
+      category: "clicks",
+      action: "changeAllUnit",
+      label: eventKey,
+    })
   }
   clearAll() {
     var newState = {}
@@ -65,6 +104,10 @@ class BaseVolumeCalculator extends React.Component {
     newState.allUnits = "cm"
     console.log(newState)
     this.setState({ ...newState })
+    ReactGA.event({
+      category: "clicks",
+      action: "clearAll",
+    })
   }
 
   render() {
@@ -137,6 +180,7 @@ class BaseVolumeCalculator extends React.Component {
             >
               Clear all
             </Button>
+            <FacebookShareButton size={32} round={true} url="test.tst" />
           </Flexbox>
         </Card.Body>
       </Card>
