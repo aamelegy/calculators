@@ -59,7 +59,7 @@ class Main extends React.Component {
                 <label>Email</label>
                 <input type="email" name="email" />
                 <label>What is broken or missing?</label>
-                <textarea name="message" id="message" rows="1" />
+                <textarea name="message" id="message" rows="2" />
                 <label></label>
                 <button type="submit">Send</button>
               </Flexbox>
