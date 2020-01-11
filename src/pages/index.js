@@ -45,16 +45,6 @@ class Main extends React.Component {
 
         <VolumeCalculators />
 
-        <Button
-          variant="primary"
-          onClick={() => {
-            this.setState(prevState => ({
-              contactFromVisible: !prevState.contactFromVisible,
-            }))
-          }}
-        >
-          Something is not working or missing?{" "}
-        </Button>
         {this.state.contactFromVisible ? (
           <form
             method="post"
@@ -74,6 +64,16 @@ class Main extends React.Component {
             </Flexbox>
           </form>
         ) : null}
+        <Button
+          variant="primary"
+          onClick={() => {
+            this.setState(prevState => ({
+              contactFromVisible: !prevState.contactFromVisible,
+            }))
+          }}
+        >
+          Something is not working or missing?{" "}
+        </Button>
       </Flexbox>
     )
   }
