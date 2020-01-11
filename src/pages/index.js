@@ -34,13 +34,12 @@ class Main extends React.Component {
         </div>
         <Flexbox
           style={{
-            fontSize: "250%",
             color: "darkblue",
             justifyContent: "center",
             display: "flex",
           }}
         >
-          Volume Calculator
+          <h1>Volume Calculator</h1>
         </Flexbox>
 
         <VolumeCalculators />
