@@ -14,13 +14,9 @@ class Main extends React.Component {
   constructor(props) {
     super(props)
     this.state = { contactFromVisible: false }
-
-    const options = {
-      autoConfig: true, // set pixel's autoConfig
-      debug: false, // enable logs
-    }
-    ReactPixel.init("868124460307963", null, options)
-    ReactPixel.pageView()
+  }
+  componentDidMount() {
+    ReactPixel.init("868124460307963")
   }
 
   render() {
