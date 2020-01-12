@@ -11,6 +11,16 @@ class UnitSelector extends React.Component {
   render() {
     var unitLabel = this.props.unitLabel
     var inputUnits = this.props.units
+    inputUnits.sort(function(a, b) {
+      if (a.plural > b.plural) {
+        return 1
+      }
+      if (b.plural > a.plural) {
+        return -1
+      }
+      return 0
+    })
+    console.log(inputUnits)
     return (
       <Flexbox>
         <Dropdown onSelect={this.props.onUnitSelect} alignRight={true}>

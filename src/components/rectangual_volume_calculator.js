@@ -28,7 +28,12 @@ class RectangularVolumeCalculator extends React.Component {
       allSelectedUnits.add(x[1])
       allSelectedUnits.add(y[1])
       allSelectedUnits.add(z[1])
-      if (allSelectedUnits.size > 1) {
+      if (
+        allSelectedUnits.size > 1 ||
+        !convert()
+          .possibilities("volume")
+          .includes(x[1] + "3")
+      ) {
         var xc = convert(x[0])
           .from(x[1])
           .to("m")

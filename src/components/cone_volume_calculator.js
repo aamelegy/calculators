@@ -19,7 +19,12 @@ class ConeVolumeCalculator extends React.Component {
       var allSelectedUnits = new Set()
       allSelectedUnits.add(r[1])
       allSelectedUnits.add(h[1])
-      if (allSelectedUnits.size > 1) {
+      if (
+        allSelectedUnits.size > 1 ||
+        !convert()
+          .possibilities("volume")
+          .includes(r[1] + "3")
+      ) {
         var rc = convert(r[0])
           .from(r[1])
           .to("m")

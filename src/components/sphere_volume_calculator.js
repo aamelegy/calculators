@@ -15,22 +15,38 @@ class SphereVolumeCalculator extends React.Component {
     if (r == null || r[0] == "") {
       return [""]
     } else {
-      var volume =
-        (4 / 3) *
-        Math.PI *
-        parseFloat(r[0]) *
-        parseFloat(r[0]) *
-        parseFloat(r[0])
-      var unit = state.resultUnit
-      var volumeInResultUnit = convert(volume)
-        .from(r[1] + "3")
-        .to(unit)
       ReactGA.event({
         category: "finishInput",
         action: "calculateSameUnits",
         label: "sphere",
       })
-      return volumeInResultUnit
+      if (
+        !convert()
+          .possibilities("volume")
+          .includes(r[1] + "3")
+      ) {
+        var rc = convert(r[0])
+          .from(r[1])
+          .to("m")
+        var volume =
+          (4 / 3) * Math.PI * parseFloat(rc) * parseFloat(rc) * parseFloat(rc)
+        var volumeInResultUnit = convert(volume)
+          .from("m3")
+          .to(state.resultUnit)
+        return volumeInResultUnit
+      } else {
+        var volume =
+          (4 / 3) *
+          Math.PI *
+          parseFloat(r[0]) *
+          parseFloat(r[0]) *
+          parseFloat(r[0])
+        var unit = state.resultUnit
+        var volumeInResultUnit = convert(volume)
+          .from(r[1] + "3")
+          .to(unit)
+        return volumeInResultUnit
+      }
     }
   }
 

@@ -15,17 +15,32 @@ class CubeVolumeCalculator extends React.Component {
     if (a == null || a[0] == "") {
       return [""]
     } else {
-      var volume = parseFloat(a[0]) * parseFloat(a[0]) * parseFloat(a[0])
-      var unit = state.resultUnit
-      var volumeInResultUnit = convert(volume)
-        .from(a[1] + "3")
-        .to(unit)
-      ReactGA.event({
-        category: "finishInput",
-        action: "calculateSameUnits",
-        label: "cube",
-      })
-      return volumeInResultUnit
+      if (
+        !convert()
+          .possibilities("volume")
+          .includes(a[1] + "3")
+      ) {
+        var ac = convert(a[0])
+          .from(a[1])
+          .to("m")
+        var volume = parseFloat(ac) * parseFloat(ac) * parseFloat(ac)
+        var volumeInResultUnit = convert(volume)
+          .from("m3")
+          .to(state.resultUnit)
+        return volumeInResultUnit
+      } else {
+        var volume = parseFloat(a[0]) * parseFloat(a[0]) * parseFloat(a[0])
+        var unit = state.resultUnit
+        var volumeInResultUnit = convert(volume)
+          .from(a[1] + "3")
+          .to(unit)
+        ReactGA.event({
+          category: "finishInput",
+          action: "calculateSameUnits",
+          label: "cube",
+        })
+        return volumeInResultUnit
+      }
     }
   }
 
