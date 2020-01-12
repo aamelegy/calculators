@@ -20,7 +20,6 @@ class UnitSelector extends React.Component {
       }
       return 0
     })
-    console.log(inputUnits)
     return (
       <Flexbox>
         <Dropdown onSelect={this.props.onUnitSelect} alignRight={true}>
