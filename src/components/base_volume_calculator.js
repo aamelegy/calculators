@@ -125,8 +125,17 @@ class BaseVolumeCalculator extends React.Component {
             maxWidth="500px"
             maxHeight="800px"
           >
+            <Flexbox marginTop={"10px"} justifyContent="center">
+              <img
+                src={this.props.shapeImage}
+                width="90"
+                height="90"
+                alt="Shape Image"
+              />
+            </Flexbox>
+
             <Flexbox>
-              <Flexbox flex={2}>All units:</Flexbox>
+              <Flexbox flex={2}>Change all units to:</Flexbox>
               <Flexbox flex={1}>
                 <UnitSelector
                   onUnitSelect={this.onAllUnitsChange}
@@ -149,19 +158,16 @@ class BaseVolumeCalculator extends React.Component {
                 </Flexbox>
               )
             })}
-
-            <Flexbox marginTop={"10px"} justifyContent="center">
-              <img
-                src={this.props.shapeImage}
-                width="90"
-                height="90"
-                alt="Shape Image"
-              />
+            <Flexbox
+              marginBottom="5px"
+              marginTop="10px"
+              style={{ fontWeight: "bold" }}
+            >
+              Volume equals:
             </Flexbox>
-            <Flexbox>Volume equals:</Flexbox>
             <Flexbox>
               <Flexbox alignItems="center" justifyContent="center">
-                <div style={{ color: "green" }}>
+                <div>
                   {" "}
                   <NewCalculationResult
                     result={this.props.getVolume(this.state)}

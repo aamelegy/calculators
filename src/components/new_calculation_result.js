@@ -12,8 +12,16 @@ class NewCalculationResult extends React.Component {
   }
 
   render() {
+    var borderStyle = "none"
+    if (this.props.result[0] !== "") {
+      borderStyle = "solid"
+    }
     return (
-      <Flexbox>
+      <Flexbox
+        style={{ borderColor: "blue", borderStyle: borderStyle }}
+        marginTop={"8px"}
+        flexDirection="column"
+      >
         <InputGroup>
           <FormControl
             placeholder="Result will show here"
