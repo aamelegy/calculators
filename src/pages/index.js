@@ -5,7 +5,16 @@ import Flexbox from "flexbox-react"
 import { Helmet } from "react-helmet"
 import ReactGA from "react-ga"
 import Button from "react-bootstrap/Button"
+import ReactPixel from "react-facebook-pixel"
+
 ReactGA.initialize("UA-155271009-1")
+
+const options = {
+  autoConfig: true, // set pixel's autoConfig
+  debug: false, // enable logs
+}
+ReactPixel.init("868124460307963", null, options)
+ReactPixel.pageView()
 
 //export PATH=${HOME}/.brew/bin:${PATH}
 class Main extends React.Component {
