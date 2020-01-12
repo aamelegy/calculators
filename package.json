@@ -6,7 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "bootstrap": "^4.4.1",
-    "convert-units": "file:convert-units",
+    "convert-units": "git+https://github.com/aamelegy/convert-units.git",
     "flexbox-react": "^4.4.0",
     "gatsby": "^2.18.12",
     "gatsby-image": "^2.2.34",
