@@ -5,6 +5,7 @@ import BaseVolumeCalculator from "../components/base_volume_calculator"
 import cylinder from "../images/cylinder.png"
 import ReactGA from "react-ga"
 var convert = require("convert-units")
+import ReactPixel from "react-facebook-pixel"
 
 class CylinderVolumeCalculator extends React.Component {
   constructor(props) {

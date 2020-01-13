@@ -3,6 +3,8 @@ import VolumeCalculatorInput from "../model/volume_calculator_input"
 import BaseVolumeCalculator from "../components/base_volume_calculator"
 import cube from "../images/cube.png"
 import ReactGA from "react-ga"
+import ReactPixel from "react-facebook-pixel"
+
 var convert = require("convert-units")
 
 class CubeVolumeCalculator extends React.Component {
@@ -15,6 +17,7 @@ class CubeVolumeCalculator extends React.Component {
     if (a == null || a[0] == "") {
       return [""]
     } else {
+      ReactPixel.track("finishInput", { value: 0.01, currency: "usd" })
       if (
         !convert()
           .possibilities("volume")

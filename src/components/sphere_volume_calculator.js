@@ -3,6 +3,8 @@ import VolumeCalculatorInput from "../model/volume_calculator_input"
 import BaseVolumeCalculator from "../components/base_volume_calculator"
 import sphere from "../images/sphere.png"
 import ReactGA from "react-ga"
+import ReactPixel from "react-facebook-pixel"
+
 var convert = require("convert-units")
 
 class SphereVolumeCalculator extends React.Component {
@@ -20,6 +22,7 @@ class SphereVolumeCalculator extends React.Component {
         action: "calculateSameUnits",
         label: "sphere",
       })
+      ReactPixel.track("finishInput", { value: 0.01, currency: "usd" })
       if (
         !convert()
           .possibilities("volume")

@@ -3,6 +3,8 @@ import VolumeCalculatorInput from "../model/volume_calculator_input"
 import BaseVolumeCalculator from "../components/base_volume_calculator"
 import cone from "../images/cone.png"
 import ReactGA from "react-ga"
+import ReactPixel from "react-facebook-pixel"
+
 var convert = require("convert-units")
 
 class ConeVolumeCalculator extends React.Component {
@@ -16,6 +18,7 @@ class ConeVolumeCalculator extends React.Component {
     if (r == null || h == null || r[0] == "" || h[0] == "") {
       return [""]
     } else {
+      ReactPixel.track("finishInput", { value: 0.01, currency: "usd" })
       var allSelectedUnits = new Set()
       allSelectedUnits.add(r[1])
       allSelectedUnits.add(h[1])

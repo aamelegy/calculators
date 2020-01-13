@@ -3,6 +3,8 @@ import VolumeCalculatorInput from "../model/volume_calculator_input"
 import BaseVolumeCalculator from "../components/base_volume_calculator"
 import cuboid from "../images/cuboid.png"
 import ReactGA from "react-ga"
+import ReactPixel from "react-facebook-pixel"
+
 var convert = require("convert-units")
 
 class RectangularVolumeCalculator extends React.Component {
@@ -24,6 +26,7 @@ class RectangularVolumeCalculator extends React.Component {
     ) {
       return [""]
     } else {
+      ReactPixel.track("finishInput", { value: 0.01, currency: "usd" })
       var allSelectedUnits = new Set()
       allSelectedUnits.add(x[1])
       allSelectedUnits.add(y[1])
