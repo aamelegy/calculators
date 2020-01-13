@@ -20,6 +20,7 @@ class Main extends React.Component {
   }
 
   render() {
+    ReactPixel.pageView()
     return (
       <Flexbox height="100vh" flexDirection="column" alignItems="center">
         <div className="application">
