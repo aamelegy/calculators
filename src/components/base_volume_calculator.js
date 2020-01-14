@@ -99,9 +99,9 @@ class BaseVolumeCalculator extends React.Component {
   clearAll() {
     var newState = {}
     this.props.inputs.forEach(element => {
-      newState[element.name] = ["", "cm"]
+      newState[element.name] = ["", this.state[element.name][1]]
     })
-    newState.allUnits = "cm"
+    //newState.allUnits = "cm"
     console.log(newState)
     this.setState({ ...newState })
     ReactGA.event({
