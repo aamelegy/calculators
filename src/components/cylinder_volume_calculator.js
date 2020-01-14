@@ -42,7 +42,7 @@ class CylinderVolumeCalculator extends React.Component {
         ReactGA.event({
           category: "finishInput",
           action: "calculateDifferentUnits",
-          label: "cylinder",
+          label: "calculateDifferentUnitsCylinder",
         })
         return volumeInResultUnit
       } else {
@@ -54,7 +54,7 @@ class CylinderVolumeCalculator extends React.Component {
         ReactGA.event({
           category: "finishInput",
           action: "calculateSameUnits",
-          label: "cylinder",
+          label: "calculateDifferentUnitsCylinder",
         })
         return volumeInResultUnit
       }

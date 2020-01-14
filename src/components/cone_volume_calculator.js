@@ -41,7 +41,7 @@ class ConeVolumeCalculator extends React.Component {
         ReactGA.event({
           category: "finishInput",
           action: "calculateDifferentUnits",
-          label: "cone",
+          label: "calculateDifferentUnitsCone",
         })
         return volumeInResultUnit
       } else {
@@ -53,7 +53,7 @@ class ConeVolumeCalculator extends React.Component {
         ReactGA.event({
           category: "finishInput",
           action: "calculateSameUnits",
-          label: "cone",
+          label: "calculateSameUnitsCone",
         })
         return volumeInResultUnit
       }

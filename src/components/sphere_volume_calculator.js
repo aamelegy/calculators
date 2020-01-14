@@ -20,7 +20,7 @@ class SphereVolumeCalculator extends React.Component {
       ReactGA.event({
         category: "finishInput",
         action: "calculateSameUnits",
-        label: "sphere",
+        label: "calculateSameUnitsSphere",
       })
       ReactPixel.track("finishInput", { value: 0.01, currency: "usd" })
       if (

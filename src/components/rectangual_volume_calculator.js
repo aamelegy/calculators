@@ -53,7 +53,7 @@ class RectangularVolumeCalculator extends React.Component {
         ReactGA.event({
           category: "finishInput",
           action: "calculateDifferentUnits",
-          label: "cuboid",
+          label: "calculateDifferentUnitsCuboid",
         })
         return volumeInResultUnit
       } else {
@@ -64,7 +64,7 @@ class RectangularVolumeCalculator extends React.Component {
         ReactGA.event({
           category: "finishInput",
           action: "calculateSameUnits",
-          label: "cuboid",
+          label: "calculateSameUnitsCuboid",
         })
         return volumeInResultUnit
       }

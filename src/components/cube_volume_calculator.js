@@ -40,7 +40,7 @@ class CubeVolumeCalculator extends React.Component {
         ReactGA.event({
           category: "finishInput",
           action: "calculateSameUnits",
-          label: "cube",
+          label: "calculateSameUnitsCube",
         })
         return volumeInResultUnit
       }
