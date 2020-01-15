@@ -48,7 +48,7 @@ class NewCalculationResult extends React.Component {
                 })
               }}
             >
-              Copy result
+              Copy
             </Button>
           </InputGroup.Append>
         </InputGroup>
