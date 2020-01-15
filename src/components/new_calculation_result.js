@@ -18,8 +18,7 @@ class NewCalculationResult extends React.Component {
     }
     return (
       <Flexbox
-        style={{ borderColor: "blue", borderStyle: borderStyle }}
-        marginTop={"8px"}
+        style={{ borderColor: "black", borderStyle: borderStyle }}
         flexDirection="column"
       >
         <InputGroup>
@@ -32,6 +31,11 @@ class NewCalculationResult extends React.Component {
             readOnly
           />
           <InputGroup.Append>
+            <UnitSelector
+              onUnitSelect={this.props.onUnitChange}
+              unitLabel={this.props.unit}
+              units={this.props.units}
+            />
             <Button
               variant="outline-secondary"
               onClick={() => {
@@ -44,13 +48,8 @@ class NewCalculationResult extends React.Component {
                 })
               }}
             >
-              Copy
+              Copy result
             </Button>
-            <UnitSelector
-              onUnitSelect={this.props.onUnitChange}
-              unitLabel={this.props.unit}
-              units={this.props.units}
-            />
           </InputGroup.Append>
         </InputGroup>
       </Flexbox>

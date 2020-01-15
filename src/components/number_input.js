@@ -1,6 +1,9 @@
 import React from "react"
 import UnitSelector from "../components/unit_selector"
 import Flexbox from "flexbox-react"
+import InputGroup from "react-bootstrap/InputGroup"
+import FormControl from "react-bootstrap/FormControl"
+import Button from "react-bootstrap/Button"
 
 class NumberInput extends React.Component {
   constructor(props) {
@@ -18,24 +21,29 @@ class NumberInput extends React.Component {
   render() {
     var unitLabel = this.props.unitLabel
     return (
-      <Flexbox flexGrow={1}>
-        <Flexbox flex={2} flexDirection="column">
-          <Flexbox flex={1}>{this.props.label}</Flexbox>
-          <Flexbox flex={2}>
-            <input
-              type="number"
-              value={this.props.value}
-              onChange={this.handleChange}
-            />
+      <Flexbox marginTop={"8px"} flexDirection="column">
+        <InputGroup>
+          <Flexbox flexDirection="column">
+            <Flexbox flex={1} style={{ fontWeight: "bold", fontSize: "20px" }}>
+              {this.props.label}
+            </Flexbox>
+            <Flexbox>
+              <FormControl
+                type="number"
+                value={this.props.value}
+                onChange={this.handleChange}
+                ref={textarea => (this.textarea = textarea)}
+              />
+              <InputGroup.Append>
+                <UnitSelector
+                  onUnitSelect={this.props.onUnitSelect}
+                  unitLabel={unitLabel}
+                  units={this.props.units}
+                />
+              </InputGroup.Append>
+            </Flexbox>
           </Flexbox>
-        </Flexbox>
-        <Flexbox flexDirection="row" flex={1} alignItems="flex-end">
-          <UnitSelector
-            onUnitSelect={this.props.onUnitSelect}
-            unitLabel={unitLabel}
-            units={this.props.units}
-          />
-        </Flexbox>
+        </InputGroup>
       </Flexbox>
     )
   }

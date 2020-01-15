@@ -78,9 +78,9 @@ class RectangularVolumeCalculator extends React.Component {
     return "Cuboid Volume Calculator"
   }
   render() {
-    var input1 = new VolumeCalculatorInput("length (l)", "l", null)
-    var input2 = new VolumeCalculatorInput("width (w)", "w", null)
-    var input3 = new VolumeCalculatorInput("height (h)", "h", null)
+    var input1 = new VolumeCalculatorInput("Length (l)", "l", null)
+    var input2 = new VolumeCalculatorInput("Width (w)", "w", null)
+    var input3 = new VolumeCalculatorInput("Height (h)", "h", null)
     return (
       <BaseVolumeCalculator
         inputs={[input1, input2, input3]}

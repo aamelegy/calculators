@@ -114,7 +114,7 @@ class BaseVolumeCalculator extends React.Component {
     var unitsUsed = convert().list("length")
     var volumeUnits = convert().list("volume")
     return (
-      <Card bg="light">
+      <Card bg="light" border="secondary">
         <Card.Header as="h5">{this.props.name}</Card.Header>
         <Card.Body>
           <Card.Text>{this.props.description}</Card.Text>
@@ -125,7 +125,11 @@ class BaseVolumeCalculator extends React.Component {
             maxWidth="500px"
             maxHeight="800px"
           >
-            <Flexbox marginTop={"10px"} justifyContent="center">
+            <Flexbox
+              marginTop={"10px"}
+              marginBottom={"10px"}
+              justifyContent="center"
+            >
               <img
                 src={this.props.shapeImage}
                 width="90"
@@ -133,49 +137,62 @@ class BaseVolumeCalculator extends React.Component {
                 alt="Shape Image"
               />
             </Flexbox>
-
-            <Flexbox>
-              <Flexbox flex={2}>Change all units to:</Flexbox>
-              <Flexbox flex={1}>
-                <UnitSelector
-                  onUnitSelect={this.onAllUnitsChange}
-                  unitLabel={this.state.allUnits}
-                  units={unitsUsed}
-                />
-              </Flexbox>
-            </Flexbox>
-            {this.props.inputs.map(element => {
-              return (
-                <Flexbox>
-                  <NumberInput
-                    value={this.state[element.name][0]}
-                    label={element.label}
-                    onChange={this.handleInputChange.bind(this, element.name)}
-                    unitLabel={this.state[element.name][1]}
-                    onUnitSelect={this.onUnitSelect.bind(this, element.name)}
+            <Flexbox flexDirection="column" padding="15px">
+              <Flexbox>
+                <Flexbox style={{ fontSize: "20px" }}>
+                  Change all units:
+                </Flexbox>
+                <Flexbox marginLeft="55px">
+                  <UnitSelector
+                    onUnitSelect={this.onAllUnitsChange}
+                    unitLabel={this.state.allUnits}
                     units={unitsUsed}
                   />
                 </Flexbox>
-              )
-            })}
-            <Flexbox
-              marginBottom="5px"
-              marginTop="10px"
-              style={{ fontWeight: "bold" }}
-            >
-              Volume equals:
-            </Flexbox>
-            <Flexbox>
-              <Flexbox alignItems="center" justifyContent="center">
-                <div>
-                  {" "}
-                  <NewCalculationResult
-                    result={this.props.getVolume(this.state)}
-                    unit={this.state.resultUnit}
-                    units={volumeUnits}
-                    onUnitChange={this.onResultUnitChange}
-                  />
-                </div>
+              </Flexbox>
+              <Flexbox flexDirection="column">
+                {this.props.inputs.map(element => {
+                  return (
+                    <Flexbox>
+                      <NumberInput
+                        value={this.state[element.name][0]}
+                        label={element.label}
+                        onChange={this.handleInputChange.bind(
+                          this,
+                          element.name
+                        )}
+                        unitLabel={this.state[element.name][1]}
+                        onUnitSelect={this.onUnitSelect.bind(
+                          this,
+                          element.name
+                        )}
+                        units={unitsUsed}
+                      />
+                    </Flexbox>
+                  )
+                })}
+              </Flexbox>
+              <Flexbox
+                marginTop="10px"
+                style={{
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                }}
+              >
+                Volume equals:
+              </Flexbox>
+              <Flexbox marginBottom="20px">
+                <Flexbox alignItems="center" justifyContent="center">
+                  <div>
+                    {" "}
+                    <NewCalculationResult
+                      result={this.props.getVolume(this.state)}
+                      unit={this.state.resultUnit}
+                      units={volumeUnits}
+                      onUnitChange={this.onResultUnitChange}
+                    />
+                  </div>
+                </Flexbox>
               </Flexbox>
             </Flexbox>
             <Button
